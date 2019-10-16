@@ -11,7 +11,7 @@ package Clase;
  */
 public class Menus {
     
-    private int idmenu;
+    private int idmenu;//hola
     private String menu;
 
     public int getIdmenu() {
