@@ -112,6 +112,15 @@ public class Controlador extends HttpServlet {
         }else if("usuarios12".equals(pag)){
             UsuarioCon us = new UsuarioCon();
             us.evalua(request, response);
+        }else if("producto".equals(pag)){
+            ProductoCon us = new ProductoCon();
+            us.evalua(request, response);
+        }else if("linea".equals(pag)){
+            LineaCon us = new LineaCon();
+            us.evalua(request, response);
+        }else if("sublinea".equals(pag)){
+            SublineaCon us = new SublineaCon();
+            us.evalua(request, response);
         }
     }
 
