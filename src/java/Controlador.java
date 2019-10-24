@@ -121,6 +121,24 @@ public class Controlador extends HttpServlet {
         }else if("sublineas".equals(pag)){
             SublineaCon us = new SublineaCon();
             us.evalua(request, response);
+        }else if("compras".equals(pag)){
+            ComprasCon cc = new ComprasCon();
+            cc.evalua(request, response);
+        }else if("clientes".equals(pag)){
+            ClienteCon clc = new ClienteCon();
+            clc.evalua(request, response);
+        }else if("cotizaciones".equals(pag)){
+            CotizacionCon coc = new CotizacionCon();
+            coc.evalua(request, response);
+        }else if("creditos".equals(pag)){
+            CreditoCon crc = new CreditoCon();
+            crc.evalua(request, response);
+        }else if("proveedores".equals(pag)){
+            ProveedoresCon prc = new ProveedoresCon();
+            prc.evalua(request, response);
+        }else if("vendedores".equals(pag)){
+            VendedorCon vc = new VendedorCon();
+            vc.evalua(request, response);
         }
         
     }
