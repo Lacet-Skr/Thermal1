@@ -1,7 +1,7 @@
 package Clase;
 
 public class Clientes {
-    //Holaaaaaaaa Andres_Nsr
+    //Holaaaaaaaa Andres_Nsr jajaja
     private int idcliente;
     private String nombrecliente;
     private String rfccliente;
