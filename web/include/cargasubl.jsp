@@ -1,5 +1,5 @@
-<%@page import="Clase.Sublineas"%>
-<%@page import="Control.SublineasCon"%>
+<%@page import="Clase.Sublinea"%>
+<%@page import="Control.SublineaCon"%>
 <%@page import="java.util.ArrayList" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -104,14 +104,14 @@
         </style>
     </head>
     <%
-            String descripcion = request.getParameter("sublineas").toString();
-            ArrayList<Sublineas> list = SublineasCon.listarSublineas(descripcion);
+            String descripcion = request.getParameter("nombre").toString();
+            ArrayList<Sublinea> list = SublineaCon.listarSublinea(descripcion);
             String pag = request.getParameter("pag");
             String link = null;
             String evento = request.getParameter("evento");
             
             if("sublineas".equals(pag)){
-                link = "/Garniet/Controlador?accion=guardar&tab=sublineas&evento=buscar&par=";
+                link = "/thermal/Controlador?accion=guardar&tab=sublineas&evento=buscar&par=";
             }
         %>
         <div class="tbl">
@@ -122,7 +122,7 @@
                         <td width="30%">Nombre</td>
                         <td width="30%"></td>
                     </tr> 
-                    <% for (Sublineas s : list) {%>
+                    <% for (Sublinea s : list) {%>
                     <tr>
                         <td align="center"><%= s.getIdsublinea()%></td>
                         <td align="center"><%= s.getDescripcionsublinea()%></td>

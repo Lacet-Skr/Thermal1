@@ -1,13 +1,13 @@
-<%@page import="Clase.Lineas"%>
-<%@page import="Control.LineasCon"%>
-<%@page import="java.util.ArrayList" %>|
+<%@page import="java.util.ArrayList"%> 
+<%@page import="Clase.Proveedores"%>
+<%@page import="Control.ProveedoresCon"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <style type="text/css">
+         <style type="text/css">
 		.tbl {
 	margin:0px;padding:0px;
 	width:100%;
@@ -62,11 +62,11 @@
 	border:1px solid #ffffff;
 	border-width:0px 1px 1px 0px;
 	text-align:center;
-	padding:5px;
+	padding:5px;/*
 	font-size:10px;
 	font-family:Arial;
 	font-weight:normal;
-	color:#044545;
+	color:#044545;*/
 }.tbl tr:last-child td{
 	border-width:0px 1px 0px 0px;
 }.tbl tr td:last-child{
@@ -103,34 +103,36 @@
 }
         </style>
     </head>
-    <%
-            String lineas = request.getParameter("lineas").toString();
-            ArrayList<Lineas> list = LineasCon.listarLineas(lineas);
-            String pag = request.getParameter("pag");
-            String link = null;
-            String evento = request.getParameter("evento");
-            
-            if("lineas".equals(pag)){
-                link = "/Garniet/Controlador?accion=guardar&tab=lineas&evento=buscar&par=";
-            }
-        %>
-        <div class="tbl">
-            <table width="100%" border="0">
-                <tbody>
-                    <tr>
-                        <td width="20%">ID</td>
-                        <td width="30%">Nombre</td>
-                        <td width="30%"></td>
-                    </tr> 
-                    <% for (Lineas l : list) {%>
-                    <tr>
-                        <td align="center"><%= l.getIdlinea()%></td>
-                        <td align="center"><%= l.getDescripcionlinea()%></td>
-                        <td><a href="<%= link + l.getIdlinea()%>"> Ver</a></td> 
-                    </tr>
-                    <%}%>
-                </tbody>
-            </table>
+    <body>
+      <% 
+      String nombre = request.getParameter("nombre");
+      ArrayList<Proveedores> list = ProveedoresCon.listarProveedor(nombre);
+      String pag = request.getParameter("pag");
+      String link = null;
+      String evento = request.getParameter("evento");
+      if("proveedores".equals(pag)){
+        link = "/Thermal/Controlador?accion=guardar&tab=proveedores&evento=buscar&par=";
+      }else if("Compra".equals(pag)){
+        link = "/Thermal/Controlador?accion=guardar&tab=proveedores&evento=buscar&par=";   
+      }
+      %>
+         <div class="tbl">
+        <table width="100%" border="0">
+            <tbody>
+                <tr>
+                    <td width="10%">ID</td>
+                    <td width="10%">Nombre</td>
+                    <td width="5%"></td>
+                </tr>
+                <% for (Proveedores pr : list) {%>
+                <tr>
+                  <td align="center"><%= pr.getIdproveedor() %></td>
+                  <td align="center"><%= pr.getNombreproveedor() %></td>
+                 <td><a href="<%= link + pr.getIdproveedor()%>" > Ver</a></td>
+                </tr>
+                <%}%>
+            </tbody>
+        </table>
         </div>
     </body>
 </html>

@@ -1,25 +1,30 @@
-
+<%-- 
+    Document   : lineas
+    Created on : 23/09/2019, 10:59:47 AM
+    Author     : Tecra
+--%>
 <%@page import="Control.LineaCon"%>
-<%@page import="Procesos.LineaProcesos"%>
-<%@page import="ProcesosImpl.LineaProcesosImpl"%>
+<%@page import="Procesos.*"%>
+<%@page import="ProcesosImpl.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Clase.*"%>
 <%@page import="Datos.*"%>
 <!DOCTYPE html>
-<%
-    	String usuario = (String) session.getAttribute("usuario");
+<%  
+	String usuario = (String) session.getAttribute("usuario");
 	if(usuario==null){
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
         
-    int id = BDLinea.ulLinea();
-    request.setAttribute("id", id);
+        int id = BDLinea.ulLinea();
+	request.setAttribute("id",id);
+
 %>
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Linea</title>
+    <title>Lineas</title>
     <link href="comunes/estilos.css" rel="stylesheet" type="text/css">
     
     <link href="comunes/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
@@ -57,7 +62,7 @@
             function cargarCombo(bnombre) {
                 var no = document.getElementById(bnombre).value;
                 var nu = no.length;
-                if (nu >= 2) {
+                if (nu >= 1) {
                     //Obtenemos el contenido del div
                     //donde se cargaran los resultados
                     var element = document.getElementById("tbl");
@@ -66,7 +71,7 @@
                     var x = valordepende.value;
                     //construimos la url definitiva
                     //pasando como parametro el valor seleccionado
-                    var fragment_url = 'include/cargalin.jsp?nombre='+x+'&pag=lineas';
+                    var fragment_url = 'include/cargali.jsp?descripcion='+x+'&pag=lineas';
                     //abrimos la url
                     peticion.open("GET", fragment_url);
                     peticion.onreadystatechange = function ()
@@ -80,12 +85,11 @@
                     peticion.send(null);
                 }
             }
-            
             </script>
     </head>
     <body>
         <div id="header">
-            <jsp:include page="comunes/header.jsp"/>
+            <jsp:include page="comunes/header.jsp"/>        
         </div>
         <c:if test="${evento != 'nuevo'}">
             <div id="buscar">
@@ -95,43 +99,44 @@
                         <tbody>
                             <tr>
                                 <td align="center"><label for="bnombre">
-                                        Linea:</label>
-                                    <input name="bnombre" type="search" required class="cajas" id="bnombre" placeholder="Nombre Linea:" onKeyPress="cargarCombo('bnombre')">
+                                        Lineas:</label>
+                                    <input name="bnombre" type="search" required class="cajas" id="bnombre" onKeyPress="cargarCombo('bnombre')">
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </form>
                 <div id="tbl">
-                
+                    
                 </div>
                 <p></p>
             </div>
         </c:if>
-        <div id="panel" align="left">
+        <div id="panel">
             <h2 class="ti">Datos de la Linea</h2>
             <form id="form1" name="form1" method="post" action="/thermal/Controlador">
-                <table width="30%" border="0" align="center">
-                    <tbody align="">
-                                <input type="hidden" name="idlinea" id="idlinea" value="${id}"></td>
-                            <td width="28%">&nbsp;</td>
-                        </tr>
+                <table width="80%" border="0" align="center">
+                    <tbody>
                         <tr>
-                            <td width="22%" align="right"><input name="tab" type="hidden" id="tab" value="linea">
+                            <td width="22%" align="right"><input name="tab" type="hidden" id="tab" value="lineas">
                                 <input name="accion" type="hidden" id="accion" value="guardar">
                                 <input name="evento" type="hidden" id="evento" value="${evento}">
                                 Clave:</td>
                             <td colspan="3"><input name="clavelinea" type="text" required class="cajas" id="nombre" value="${linea.clavelinea}" size="30">
-                            <c:choose>
-                            <c:when test="${linea != null}">
-                        <c:set target="idlinea" var="id" value="${linea.idlinea}"/>
-                            </c:when>
-                            </c:choose>
+                                <c:choose>
+                                    <c:when test="${linea != null}">
+                                        <c:set target="idlinea" var="id" value="${linea.idlinea}"/>
+                                    </c:when>
+                                </c:choose>
+                                <input type="hidden" name="idlinea" id="idlinea" value="${id}"></td>
+                            <td width="28%">&nbsp;</td>
+                        </tr>
                         <tr>
-                            <td> 
-                                Descripcion Linea:</td>
-                            <td colspan="3"><input name="descripcionlinea" type="text" required class="cajas" id="nombre" value="${linea.descripcionlinea}" size="30">
-                        </tr>    
+                            <td align="right">Descripcion:</td>
+                            <td width="15%"><textarea name="descripcionlinea" cols="30" rows="5" class="cajas" id="descripcionlinea">${linea.descripcionlinea}</textarea></td>
+                            <td colspan="2">&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
                         <tr>
                           <td>
                                 <c:if test="${evento != 'consultar'}">
@@ -144,7 +149,6 @@
                                 </c:if>
                             </td>
                         </tr>                        
-                    </tbody>
                 </table>
             </form>                     
         </div>

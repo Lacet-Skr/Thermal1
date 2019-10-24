@@ -2,10 +2,13 @@
 package Clase;
 
 public class Producto {
+    
     private int idproducto;
     private String costoproducto;
     private String descripcionproducto;
-    private String existenciaproducto;
+    private int existenciaproducto;
+    private int linea;
+    private int sublinea;
 
     public int getIdproducto() {
         return idproducto;
@@ -31,13 +34,27 @@ public class Producto {
         this.descripcionproducto = descripcionproducto;
     }
 
-    public String getExistenciaproducto() {
+    public int getExistenciaproducto() {
         return existenciaproducto;
     }
 
-    public void setExistenciaproducto(String existenciaproducto) {
+    public void setExistenciaproducto(int existenciaproducto) {
         this.existenciaproducto = existenciaproducto;
     }
-    
-    
+    public int getSublinea() {
+        return sublinea;
+    }
+
+    public void setSublinea(int sublinea) {
+        this.sublinea = sublinea;
+    }
+        public int getLinea() {
+        return linea;
+    }
+
+    public void setLinea(int linea) {
+        this.linea = linea;
+    }
+
+
 }

@@ -1,78 +1,77 @@
 
 package ProcesosImpl;
 
+
 import Procesos.ProductoProcesos;
 import DAO.ProductoDAO;
 import Clase.Producto;
-import DAOFactory.ProductoDAOFactory;
+import DAO.Factory.ProductoDAOFactory;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ProductoProcesosImpl implements ProductoProcesos{
-
+         
     private static ProductoProcesos prodpro;
     private ProductoDAO prodDAO;
     
     public static ProductoProcesos getInstancia(){
-    if(prodpro ==null){
-        prodpro = new ProductoProcesosImpl();
+            if(prodpro == null){
+            prodpro = new ProductoProcesosImpl();
         }
-    return prodpro;
+        return prodpro;
     }
-    
+
     public void nuevoProducto(Producto p) {
         try{
             this.prodDAO = ProductoDAOFactory.crear();
             prodDAO.insertarProducto(p);
-        }catch (SQLException ex){
-            System.out.println("No iserto producto: " + ex.getMessage());
-        }
+        }catch(SQLException ex){
+        System.out.println("No inserto producto: "+ ex.getMessage());
+        }        
     }
 
-    public ArrayList<Producto> listarProducto(String producto) {
-        ArrayList<Producto> list = null;
+    public ArrayList<Producto> listarProducto(String descripcion) {
+               ArrayList<Producto> list = null;
         try{
-        this.prodDAO = ProductoDAOFactory.crear();
-        list = prodDAO.listarProducto(producto);
+            this.prodDAO = ProductoDAOFactory.crear();
+            list = prodDAO.listarProducto(descripcion);
         } catch (SQLException ex){
-            System.out.println("No lista Producto: "+ ex.getMessage());
+            System.out.println("No listo producto: "+ ex.getMessage());
             return null;
         }
-        return list;
+        return list;        
     }
 
     public Producto buscarProducto(int id) {
         Producto p = new Producto();
         try{
         this.prodDAO = ProductoDAOFactory.crear();
-        p = prodDAO.buscarProducto(id);
+            p = prodDAO.buscarProducto(id);
         }catch (SQLException ex){
-        System.out.println("No busco Producto: "+ ex.getMessage());
         return null;
         }
-        return p;
+        return p;        
     }
 
     public void editarProducto(Producto p) {
-        try{
-        this.prodDAO = ProductoDAOFactory.crear();
-        prodDAO.actualizarProducto(p);
+       try{
+       this.prodDAO = ProductoDAOFactory.crear();
+            prodDAO.actualizarProducto(p);
         }catch (SQLException ex){
-            System.out.println("No busco producto:"+ ex.getMessage());
-        }
+            System.out.println("No actualiza producto: "+ ex.getMessage());
+        }        
     }
 
     public ArrayList<Producto> listarProducto2() {
-        ArrayList<Producto> list = null;
+                        ArrayList<Producto> list = null;
         try{
-        this.prodDAO = ProductoDAOFactory.crear();
-        list = prodDAO.listarProducto2();
+            this.prodDAO = ProductoDAOFactory.crear();
+            list = prodDAO.listarProducto2();
         } catch (SQLException ex){
-            System.out.println("No lista Producto: "+ ex.getMessage());
+            System.out.println("No listo producto: "+ ex.getMessage());
             return null;
         }
         return list;
     }
-    
     
 }

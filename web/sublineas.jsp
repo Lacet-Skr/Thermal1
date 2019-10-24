@@ -1,27 +1,28 @@
 <%-- 
-    Document   : proveedor
-    Created on : 3/09/2019, 11:44:20 AM
+    Document   : sublineas
+    Created on : 23/09/2019, 11:00:06 AM
     Author     : Tecra
 --%>
-
-<%@page import="Control.SublineaCon"%>
-<%@page import="Procesos.SublineaProcesos"%>
-<%@page import="ProcesosImpl.SublineaProcesosImpl"%>
+<%@page import="Control.*"%>
+<%@page import="Procesos.*"%>
+<%@page import="ProcesosImpl.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Clase.*"%>
 <%@page import="Datos.*"%>
 <!DOCTYPE html>
 <%
-    	String usuario = (String) session.getAttribute("usuario");
-	if(usuario==null){
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-	}
+    String usuario = (String) session.getAttribute("usuario");
+    if(usuario==null){
+    request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+    LineaProcesos listarlin = LineaProcesosImpl.getInstancia();
+    ArrayList<Linea> lisli = listarlin.listarLinea2();
+    request.setAttribute("listadolineas", lisli);
     
-    int id = BDSublinea.ulSublineas();
+    int id = BDSublinea.ulSublinea();
     request.setAttribute("id", id);
 %>
-
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -61,16 +62,17 @@
             if (!peticion)
                 alert("ERROR AL INICIALIZAR!");
             function cargarCombo(bnombre) {
+                var no = document.getElementById(bnombre).value;
+                var nu = no.length;
+                if (nu >= 3) {
                     //Obtenemos el contenido del div
                     //donde se cargaran los resultados
-        var no = document.getElementById(bnombre).value;
-        var nu = no.length;
-        if (nu>=2){
-        
-        var element = document.getElementById("tbl");
-        
-        var valordepende = document.getElementById(bnombre);
-        var x=valordepende.value;
+                    var element = document.getElementById("tbl");
+                    //Obtenemos el valor seleccionado del combo anterior
+                    var valordepende = document.getElementById(bnombre);
+                    var x = valordepende.value;
+                    //construimos la url definitiva
+                    //pasando como parametro el valor seleccionado
                     var fragment_url = 'include/cargasubl.jsp?nombre='+x+'&pag=sublineas';
                     //abrimos la url
                     peticion.open("GET", fragment_url);
@@ -87,9 +89,9 @@
             }
             </script>
     </head>
-    <body >
+    <body>
         <div id="header">
-            <jsp:include page="header.jsp"/>
+            <jsp:include page="comunes/header.jsp"/>        
         </div>
         <c:if test="${evento != 'nuevo'}">
             <div id="buscar">
@@ -99,61 +101,61 @@
                         <tbody>
                             <tr>
                                 <td align="center"><label for="bnombre">
-                                        Sublineas:</label>
-                                    <input name="bnombre" type="search" required class="cajas" id="bnombre" placeholder="Nombre de Sublinea" onKeyPress="cargarCombo('bnombre')">
+                                        Sublinea:</label>
+                                    <input name="bnombre" type="search" required class="cajas" id="bnombre" placeholder="Nombre Sublinea" onKeyPress="cargarCombo('bnombre')">
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </form>
                 <div id="tbl">
-                
+                    
                 </div>
                 <p></p>
             </div>
         </c:if>
-        <div id="panel" align="left">
-            <h2 class="ti">Datos de Sublineas</h2>
+        <div id="panel">
+            <h2 class="ti">Datos de la Sublinea</h2>
             <form id="form1" name="form1" method="post" action="/thermal/Controlador">
-                <table width="30%" border="0" align="center">
-                    <tbody align="">
+                <table width="80%" border="0" align="center">
+                    <tbody>
                         <tr>
-                            <td width="22%" align="right"><input name="tab" type="hidden" id="tab" value="sublinea">
+                            <td width="22%" align="right"><input name="tab" type="hidden" id="tab" value="sublineas">
                                 <input name="accion" type="hidden" id="accion" value="guardar">
                                 <input name="evento" type="hidden" id="evento" value="${evento}">
                                 Clave:</td>
-                            <td colspan="3"><input name="clave" type="text" required class="cajas" id="nombre" value="${productos.calve}" width="54" size="30">
-                        </tr> 
-                        <tr>
-                            <td width="22%" align="right"><input name="tab" type="hidden" id="tab" value="sublinea">
-                                <input name="accion" type="hidden" id="accion" value="guardar">
-                                <input name="evento" type="hidden" id="evento" value="${evento}">
-                                Sublinea:</td>
-                            <td colspan="3"><input name="sublinea" type="text" required class="cajas" id="nombre" value="${productos.sublineas}" size="30">
+                            <td colspan="3"><input name="clavesublinea" type="text" required class="cajas" id="nombre" value="${sublinea.clavesublinea}" size="30">
                                 <c:choose>
-                                    <c:when test="${productos != null}">
-                                        <c:set target="idproductos" var="id" value="${productos.idproductos}"/>
+                                    <c:when test="${sublinea != null}">
+                                        <c:set target="idsublinea" var="id" value="${sublinea.idsublinea}"/>
                                     </c:when>
                                 </c:choose>
-                                <input type="hidden" name="idproductos" id="idproductos" value="${id}"></td>
+                                <input type="hidden" name="idsublinea" id="idsublinea" value="${id}"></td>
                             <td width="28%">&nbsp;</td>
-                        </tr>   
+                        </tr>                     
                         <tr>
-                            <td width="22%" align="right"><input name="tab" type="hidden" id="tab" value="linea">
-                                <input name="accion" type="hidden" id="accion" value="guardar">
-                                <input name="evento" type="hidden" id="evento" value="${evento}">
-                                linea:</td>
-                            <td colspan="3"><input name="linea" type="text" required class="cajas" id="nombre" value="${productos.linea}" size="30">
-                        </tr>    
+                        <td align="right">Lineas:</td>
+                        <td>
+                            <select name="linea" class="combos" id="lineas" onchange="x(this.value)">
+                                <option value="" disable selected>Selecciona..</option> 
                                 
-                                <c:choose>
-                                    <c:when test="${proveedor != null}">
-                                        <c:set target="idproveedor" var="id" value="${proveedor.idproveedor}"/>
-                                    </c:when>
-                                </c:choose>
-                                <input type="hidden" name="idproveedor" id="idproveedor" value="${id}"></td>
-                            <td width="28%">&nbsp;</td>
+                               <c:forEach var="lisli" items="${listadolineas}">
+                                        <option value="${lisli.idlinea}"
+                                                <c:if test="${sublinea != null}">
+                                                    ${lisli.idlinea == sublinea.linea ? 'selected="selected"' : ''}
+                                                </c:if>
+                                                
+                                                >${lisli.descripcionlinea}</option>
+                               </c:forEach>
+                            </select>
+                            </td>
                         </tr>
+                        <tr>
+                            <td align="right">Descripcion:</td>
+                            <td width="15%"><textarea name="descripcionsublinea" cols="30" rows="5" class="cajas" id="descripcionsublinea">${sublinea.descripcionsublinea}</textarea></td>
+                            <td colspan="2">&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>                        
                         <tr>
                           <td>
                                 <c:if test="${evento != 'consultar'}">
@@ -166,7 +168,6 @@
                                 </c:if>
                             </td>
                         </tr>                        
-                    </tbody>
                 </table>
             </form>                     
         </div>

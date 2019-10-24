@@ -23,6 +23,8 @@ public class LineaCon {
             this.editarLinea(request, response);
         }else if("buscar".equals(evento)){
             this.buscarLinea(request, response);
+        }else if("buscarpro".equals(evento)){
+            this.buscarLineaPrd(request, response);
         }
     }
         private void nuevoLinea(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
@@ -30,6 +32,7 @@ public class LineaCon {
         li.setIdlinea(Integer.parseInt(request.getParameter("idlinea")));
         li.setClavelinea(Integer.parseInt(request.getParameter("clavelinea")));
         li.setDescripcionlinea(request.getParameter("descripcionlinea"));
+        
         lineapro.nuevoLinea(li);
         request.getRequestDispatcher("panel.jsp").forward(request, response);
         }
@@ -37,17 +40,25 @@ public class LineaCon {
         Linea l=new Linea();
         l.setIdlinea(Integer.parseInt(request.getParameter("idlinea")));
         l.setClavelinea(Integer.parseInt(request.getParameter("clavelinea")));
-        l.setDescripcionlinea(request.getParameter("linea"));
+        l.setDescripcionlinea(request.getParameter("descripcionlinea"));
         lineapro.editarLinea(l);
-        response.sendRedirect("panel.jsp");
+        request.getRequestDispatcher("panel.jsp").forward(request, response);
     }    
         private void buscarLinea(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         int id = Integer.parseInt(request.getParameter("par"));
         Linea l = lineapro.buscarLinea(id);
         request.setAttribute("linea", l);
-        request.setAttribute("evento", "buscar");
+        request.setAttribute("evento", "editar");
         request.getRequestDispatcher("lineas.jsp").forward(request, response);
     }
+        
+        private void buscarLineaPrd(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+        int id = Integer.parseInt(request.getParameter("par"));
+        Linea l = lineapro.buscarLinea(id);
+        request.setAttribute("linea", l);
+        request.getRequestDispatcher("Productossub.jsp").forward(request, response);
+    }
+        
     public static ArrayList<Linea>listarLinea(String descripcion)throws ServletException, IOException{
         ArrayList<Linea>list = lineapro.listarLinea(descripcion);
         return list;
@@ -56,6 +67,5 @@ public class LineaCon {
         ArrayList<Linea>list = lineapro.listarLinea2();
         return list;
     }        
-    
 }
 

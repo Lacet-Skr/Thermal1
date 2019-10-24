@@ -4,7 +4,7 @@ package ProcesosImpl;
 import Procesos.SublineaProcesos;
 import DAO.SublineaDAO;
 import Clase.Sublinea;
-import DAOFactory.SublineaDAOFactory;
+import DAO.Factory.SublineaDAOFactory;
 import java.sql.SQLException;
 import java.util.ArrayList;
 

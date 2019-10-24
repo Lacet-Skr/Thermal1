@@ -69,13 +69,13 @@
    		<ul>
                     <%for(Permisos pe : list){
                     if(7==pe.getMenu()){%>
-                    <li><a href="/thermal/Controlador?pag=productos&evento=nuevo">Nuevo Producto</a></li>
+                    <li><a href="/thermal/Controlador?pag=ProductosLi&evento=nuevo">Nuevo Producto</a></li>
                     <%}
                     if(8==pe.getMenu()){%>
-                    <li><a href="/thermal/Controlador?pag=productos&evento=editar">Modificar Producto</a></li>
+                    <li><a href="/thermal/Controlador?pag=ProductosLi&evento=editar">Modificar Producto</a></li>
                     <%}
                     if(9==pe.getMenu()){%>
-                    <li><a href="/thermal/Controlador?pag=productos&evento=consultar">Consultar Producto</a></li>
+                    <li><a href="/thermal/Controlador?pag=ProductosLi&evento=consultar">Consultar Producto</a></li>
                     <%}}%>
                 </ul>
                     </li>

@@ -1,15 +1,11 @@
 
-package DAOFactory;
+package DAO.Factory;
 
-import DAO.LineaDAO;
 import Datos.BDLinea;
+import DAO.LineaDAO;
 
 public class LineaDAOFactory {
-        
     public static LineaDAO crear(){
-        
-    return new BDLinea();
-    }
-    
+     return new BDLinea();
+ }
 }
-

@@ -1,6 +1,10 @@
 
 package Clase;
 
+/**
+ *
+ * @author LACET
+ */
 public class Linea {
     private int idlinea;
     private int clavelinea;

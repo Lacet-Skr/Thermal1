@@ -29,7 +29,7 @@ public class SublineaCon {
         s.setIdsublinea(Integer.parseInt(request.getParameter("idsublinea")));
         s.setClavesublinea(Integer.parseInt(request.getParameter("clavesublinea")));
         s.setLinea(Integer.parseInt(request.getParameter("linea")));
-        s.setDescripcionsublinea(request.getParameter("sublinea"));
+        s.setDescripcionsublinea(request.getParameter("descripcionsublinea"));
         subpro.nuevoSublinea(s);
         request.getRequestDispatcher("panel.jsp").forward(request, response);
         }
@@ -39,17 +39,25 @@ public class SublineaCon {
         s.setIdsublinea(Integer.parseInt(request.getParameter("idsublinea")));
         s.setClavesublinea(Integer.parseInt(request.getParameter("clavesublinea")));
         s.setLinea(Integer.parseInt(request.getParameter("linea")));
-        s.setDescripcionsublinea(request.getParameter("sublinea"));
+        s.setDescripcionsublinea(request.getParameter("descripcionsublinea"));
         subpro.editarSublinea(s);
         response.sendRedirect("panel.jsp");
     }            
          private void buscarSublinea(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         int id = Integer.parseInt(request.getParameter("par"));
         Sublinea s = subpro.buscarSublinea(id);
-        request.setAttribute("sublineas", s);
+        request.setAttribute("sublinea", s);
         request.setAttribute("evento", "editar");
         request.getRequestDispatcher("sublineas.jsp").forward(request, response);
     }
+         
+         private void buscarSublineapro(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+        int id = Integer.parseInt(request.getParameter("par"));
+        Sublinea s = subpro.buscarSublinea(id);
+        request.setAttribute("sublinea", s);
+        request.getRequestDispatcher("productos.jsp").forward(request, response);
+    }
+         
     public static ArrayList<Sublinea>listarSublinea(String descripcion)throws ServletException, IOException{
         ArrayList<Sublinea>list = subpro.listarSublinea(descripcion);
         return list;

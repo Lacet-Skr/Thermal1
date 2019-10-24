@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="Clase.Productos"%>
-<%@page import="Control.ProductosCon"%>
+<%@page import="Clase.Producto"%>
+<%@page import="Control.ProductoCon"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -103,31 +103,36 @@
 }
         </style>
     </head>
-    <body>
     <%
-        String nombre = request.getParameter("descripcion");
-        ArrayList<Productos> list = ProductosCon.listarProductos(nombre);
+        String descripcion = request.getParameter("descripcion");
+        ArrayList<Producto> list = ProductoCon.listarLinea(descripcion);
+        String pag = request.getParameter("pag");
         String link = null;
         String evento = request.getParameter("evento");
         
+            if("productos".equals(pag)){
+            link = "/thermal/Controlador?accion=guardar&tab=productos&evento=buscar&par=";
+            }
    
     %>
-<div class="tblprod">
+    <body>
+<div class="tbl">
         <table width="100%" border="0">
             <tbody>
                 <tr>
                     <td width="10%">ID</td>
                     <td width="40%">Descripción</td>
                     <td width="20%">Costo</td>
-                    <td width="20%">Existencia</td>
+                    <td width="20%"></td>
+                   
                 </tr>
-                <% for (Productos p : list) {%>
+                <% for (Producto p : list) {%>
                 <tr>
                     
-                    <td align="center"><%= p.getIdproducto()%> <input type="button" onclick="add_row(<%= p.getIdproducto()%>, '<%= p.getDescripcionproducto()%>', <%= p.getCostoproducto()%>)" value="Agregar" /></td>
+                    <td align="center"><%= p.getIdproducto()%></td>
                     <td align="center"><%= p.getDescripcionproducto()%></td>
                     <td align="center"><%= p.getCostoproducto()%></td>
-                    <td align="center"><%= p.getExistenciaproducto()%></td>
+                    <td><a href="<%= link + p.getIdproducto()%>"> Ver</a></td> 
                 </tr>
                 <%}%>
             </tbody>

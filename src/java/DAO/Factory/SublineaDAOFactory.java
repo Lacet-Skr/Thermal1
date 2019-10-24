@@ -1,5 +1,6 @@
 
-package DAOFactory;
+package DAO.Factory;
+
 import DAO.SublineaDAO;
 import Datos.BDSublinea;
 

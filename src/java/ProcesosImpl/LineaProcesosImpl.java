@@ -4,7 +4,7 @@ package ProcesosImpl;
 import Procesos.LineaProcesos;
 import DAO.LineaDAO;
 import Clase.Linea;
-import DAOFactory.LineaDAOFactory;
+import DAO.Factory.LineaDAOFactory;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -65,7 +65,7 @@ public class LineaProcesosImpl implements LineaProcesos {
                 ArrayList<Linea> list = null;
         try{
             this.lineaDAO = LineaDAOFactory.crear();
-            list = lineaDAO.listarlinea2();
+            list = lineaDAO.listarLinea2();
         } catch (SQLException ex){
             System.out.println("No listo linea: "+ ex.getMessage());
             return null;

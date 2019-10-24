@@ -46,6 +46,9 @@ public class BDLinea implements LineaDAO{
         
         stmt.setInt(1, l.getClavelinea());
         stmt.setString(2, l.getDescripcionlinea());
+        stmt.setInt(3, l.getIdlinea());
+        System.out.println("Ejecutando: SQL_UPDATE con id: "+ l.getIdlinea());
+        stmt.executeUpdate();
     }catch(SQLException ex){
         System.out.println("No actualiza linea:"+ ex.getMessage());
     }finally{
@@ -55,7 +58,7 @@ public class BDLinea implements LineaDAO{
     }
 
     public Linea buscarLinea(int id) throws SQLException {
-                String sql = SQL_SELECT + " WHERE idlineas=" + id;
+                String sql = SQL_SELECT + " WHERE idlinea=" + id;
         Linea l = new Linea();
         Connection con = null;
         PreparedStatement ps = null;
@@ -65,8 +68,9 @@ public class BDLinea implements LineaDAO{
             ps = con.prepareStatement(sql);
             res = ps.executeQuery();
         if(res.next()){
-        l.getIdlinea();
+        l.setIdlinea(id);
         l.setDescripcionlinea(res.getString("descripcionlinea"));
+        l.setClavelinea(res.getInt("clavelinea"));
         }
         }catch(SQLException ex){
         System.out.println("No busco linea: "+ ex.getMessage());
@@ -78,14 +82,30 @@ public class BDLinea implements LineaDAO{
         }
         return l;
     }
-
-    public ArrayList<Linea> listarLinea(String linea) throws SQLException {
-        String sql = SQL_SELECT + " WHERE descripcionlinea like '"+ linea + "%' ORDER BY descripcionlinea";
-        return consultaSQL(sql);
+        public static int ulLinea() throws SQLException{
+    String sql = "SELECT MAX(idlinea)+1 FROM lineas";
+    Connection con = BD.getConnection();
+    Statement stat = null;
+    ResultSet res = null;
+    int id;
+    try{
+        stat = con.createStatement();
+        res = stat.executeQuery(sql);
+        res.next();
+        id = res.getInt("MAX(idlinea)+1");
+    }catch (SQLException ex){
+        System.out.println("No busco ULTIMO linea: " + ex.getMessage());
+        return 0;
+    }finally{
+        BD.close(con);
+        BD.close(stat);
+        BD.close(res);
+    }
+    return id;
     }
 
-    public ArrayList<Linea> listarlinea2() throws SQLException {
-        String sql = SQL_SELECT + " ORDER BY descripcionlinea";
+    public ArrayList<Linea> listarLinea2() throws SQLException {
+                String sql = SQL_SELECT + " ORDER BY descripcionlinea";
         return consultaSQL(sql);
     }
     
@@ -116,26 +136,10 @@ public class BDLinea implements LineaDAO{
     }
     return list;
     }
-        public static int ulLinea() throws SQLException{
-    String sql = "SELECT MAX(idlinea)+1 FROM lineas";
-    Connection con = BD.getConnection();
-    Statement stat = null;
-    ResultSet res = null;
-    int id;
-    try{
-        stat = con.createStatement();
-        res = stat.executeQuery(sql);
-        res.next();
-        id = res.getInt("MAX(idlinea)+1");
-    }catch (SQLException ex){
-        System.out.println("No busco ULTIMO linea: " + ex.getMessage());
-        return 0;
-    }finally{
-        BD.close(con);
-        BD.close(stat);
-        BD.close(res);
-    }
-    return id;
+
+    public ArrayList<Linea> listarLinea(String descripcion) throws SQLException {
+             String sql = SQL_SELECT + " WHERE descripcionlinea like '"+ descripcion + "%' ORDER BY descripcionlinea";
+        return consultaSQL(sql);
     }
 }
 
