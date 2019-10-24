@@ -1,5 +1,5 @@
 package Datos;
-// un free ;) para recoger paletones
+// un free ;) para recoger paletones :)
 import java.sql.*;
 import java.util.Enumeration;
 import java.util.Properties;
