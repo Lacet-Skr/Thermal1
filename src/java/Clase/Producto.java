@@ -3,6 +3,7 @@ package Clase;
 
 public class Producto {
     
+    //soy itaN216 sigueme en twitch
     private int idproducto;
     private String costoproducto;
     private String descripcionproducto;
