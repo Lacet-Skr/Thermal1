@@ -10,7 +10,7 @@ public class Producto {
     private int existenciaproducto;
     private int linea;
     private int sublinea;
-
+//saquen las paletas
     public int getIdproducto() {
         return idproducto;
     }
