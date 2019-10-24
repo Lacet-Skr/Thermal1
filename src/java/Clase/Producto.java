@@ -3,7 +3,7 @@ package Clase;
 
 public class Producto {
     
-    //Un free ;)
+    //Un free ;)xx
     private int idproducto;
     private String costoproducto;
     private String descripcionproducto;
