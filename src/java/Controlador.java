@@ -19,7 +19,7 @@ import Control.*;
 import Procesos.*;
 import ProcesosImpl.*;
 
-/**
+/**jaja
  *
  * @author Dell
  */
