@@ -1,6 +1,6 @@
 
 package Clase;
-
+//hhh
 public class Vendedores {
     
     private int idvendedor;
