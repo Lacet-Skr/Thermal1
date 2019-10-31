@@ -73,5 +73,30 @@ public class ProductoProcesosImpl implements ProductoProcesos{
         }
         return list;
     }
+
+   
+    public ArrayList<Producto> listarProducto3(String clave) {
+                       ArrayList<Producto> list = null;
+        try{
+            this.prodDAO = ProductoDAOFactory.crear();
+            list = prodDAO.listarProducto3(clave);
+        } catch (SQLException ex){
+            System.out.println("No listo producto: "+ ex.getMessage());
+            return null;
+        }
+        return list;
+    }
+    
+    public ArrayList<Producto> listarProducto4(int sublinea) {
+                       ArrayList<Producto> list = null;
+        try{
+            this.prodDAO = ProductoDAOFactory.crear();
+            list = prodDAO.listarProducto4(sublinea);
+        } catch (SQLException ex){
+            System.out.println("No listo producto: "+ ex.getMessage());
+            return null;
+        }
+        return list;
+    }
     
 }

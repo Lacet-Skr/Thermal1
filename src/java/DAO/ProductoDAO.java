@@ -17,6 +17,9 @@ public interface ProductoDAO {
     
     public ArrayList<Producto> listarProducto(String descripcion) throws SQLException;
     
+    public ArrayList<Producto> listarProducto3(String clave) throws SQLException;
+    
+    public ArrayList<Producto> listarProducto4(int sublinea) throws SQLException;
     
    
 }

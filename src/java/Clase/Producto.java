@@ -5,12 +5,15 @@ public class Producto {
     
     //Soy itaN216 y sigueme en twitch
     private int idproducto;
-    private String costoproducto;
+    private String claveproducto;
     private String descripcionproducto;
+    private String unidadproducto;
     private int existenciaproducto;
+    private int cotoproducto;
+    private int ventaproducto;
     private int linea;
     private int sublinea;
-//saquen las paletas
+
     public int getIdproducto() {
         return idproducto;
     }
@@ -19,12 +22,12 @@ public class Producto {
         this.idproducto = idproducto;
     }
 
-    public String getCostoproducto() {
-        return costoproducto;
+    public String getClaveproducto() {
+        return claveproducto;
     }
 
-    public void setCostoproducto(String costoproducto) {
-        this.costoproducto = costoproducto;
+    public void setClaveproducto(String claveproducto) {
+        this.claveproducto = claveproducto;
     }
 
     public String getDescripcionproducto() {
@@ -35,6 +38,14 @@ public class Producto {
         this.descripcionproducto = descripcionproducto;
     }
 
+    public String getUnidadproducto() {
+        return unidadproducto;
+    }
+
+    public void setUnidadproducto(String unidadproducto) {
+        this.unidadproducto = unidadproducto;
+    }
+
     public int getExistenciaproducto() {
         return existenciaproducto;
     }
@@ -42,14 +53,24 @@ public class Producto {
     public void setExistenciaproducto(int existenciaproducto) {
         this.existenciaproducto = existenciaproducto;
     }
-    public int getSublinea() {
-        return sublinea;
+
+    public int getCotoproducto() {
+        return cotoproducto;
     }
 
-    public void setSublinea(int sublinea) {
-        this.sublinea = sublinea;
+    public void setCotoproducto(int cotoproducto) {
+        this.cotoproducto = cotoproducto;
     }
-        public int getLinea() {
+
+    public int getVentaproducto() {
+        return ventaproducto;
+    }
+
+    public void setVentaproducto(int ventaproducto) {
+        this.ventaproducto = ventaproducto;
+    }
+
+    public int getLinea() {
         return linea;
     }
 
@@ -57,5 +78,12 @@ public class Producto {
         this.linea = linea;
     }
 
+    public int getSublinea() {
+        return sublinea;
+    }
+
+    public void setSublinea(int sublinea) {
+        this.sublinea = sublinea;
+    }
 
 }

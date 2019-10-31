@@ -30,7 +30,7 @@ public class BDSublinea implements SublineaDAO{
         stmt = conn.prepareStatement(SQL_INSERT);
         
         stmt.setInt(1, s.getIdsublinea());
-        stmt.setInt(2, s.getClavesublinea());
+        stmt.setString(2, s.getClavesublinea());
         stmt.setInt(3, s.getLinea());
         stmt.setString(4, s.getDescripcionsublinea());
         stmt.executeUpdate();
@@ -51,7 +51,7 @@ public class BDSublinea implements SublineaDAO{
         stmt = conn.prepareStatement(SQL_UPDATE);
         
         stmt.setInt(1, s.getIdsublinea());
-        stmt.setInt(2, s.getClavesublinea());
+        stmt.setString(2, s.getClavesublinea());
         stmt.setString(3, s.getDescripcionsublinea());
         stmt.setInt(4, s.getLinea());
         stmt.executeUpdate();
@@ -104,7 +104,7 @@ public class BDSublinea implements SublineaDAO{
         return consultaSQL(sql);
     
 }
-    private ArrayList<Sublinea> consultaSQL (String sql){
+    private ArrayList<Sublinea> consultaSQL (String sql) throws SQLException{
     ArrayList<Sublinea> list = new ArrayList<Sublinea>();
     Connection con = null;
     Statement stat = null;
@@ -117,7 +117,7 @@ public class BDSublinea implements SublineaDAO{
         while (res.next()){
         s = new Sublinea();
         s.setIdsublinea(res.getInt("idsublinea"));
-        s.setClavesublinea(res.getInt("clavesublinea"));
+        s.setClavesublinea(res.getString("clavesublinea"));
         s.setDescripcionsublinea(res.getString("descripcionsublinea"));
         list.add(s);
         }

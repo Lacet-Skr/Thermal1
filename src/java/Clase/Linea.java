@@ -7,7 +7,7 @@ package Clase;
  */
 public class Linea {
     private int idlinea;
-    private int clavelinea;
+    private String clavelinea;
     private String descripcionlinea;
 
     public int getIdlinea() {
@@ -18,11 +18,11 @@ public class Linea {
         this.idlinea = idlinea;
     }
 
-    public int getClavelinea() {
+    public String getClavelinea() {
         return clavelinea;
     }
 
-    public void setClavelinea(int clavelinea) {
+    public void setClavelinea(String clavelinea) {
         this.clavelinea = clavelinea;
     }
 

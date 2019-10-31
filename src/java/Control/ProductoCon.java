@@ -31,8 +31,11 @@ public class ProductoCon {
         private void nuevoProducto(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         Producto p = new Producto();
         p.setIdproducto(Integer.parseInt(request.getParameter("idproducto")));
-        p.setCostoproducto(request.getParameter("costoproducto"));
+        p.setClaveproducto(request.getParameter("claveproducto"));
         p.setDescripcionproducto(request.getParameter("descripcionproducto"));
+        p.setUnidadproducto(request.getParameter("unidadproducto"));
+        p.setCotoproducto(Integer.parseInt(request.getParameter("costoproducto")));
+        p.setVentaproducto(Integer.parseInt(request.getParameter("ventaproducto")));
         p.setLinea(Integer.parseInt(request.getParameter("linea")));
         p.setSublinea(Integer.parseInt(request.getParameter("sublinea")));
         prodpro.nuevoProducto(p);
@@ -41,8 +44,11 @@ public class ProductoCon {
     private void editarProducto(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         Producto p=new Producto();
         p.setIdproducto(Integer.parseInt(request.getParameter("idproducto")));
-        p.setCostoproducto(request.getParameter("costoproducto"));
+        p.setClaveproducto(request.getParameter("claveproducto"));
         p.setDescripcionproducto(request.getParameter("descripcionproducto"));
+        p.setUnidadproducto(request.getParameter("unidadproducto"));
+        p.setCotoproducto(Integer.parseInt(request.getParameter("costoproducto")));
+        p.setVentaproducto(Integer.parseInt(request.getParameter("ventaproducto")));
         p.setLinea(Integer.parseInt(request.getParameter("linea")));
         p.setSublinea(Integer.parseInt(request.getParameter("sublinea")));
         prodpro.editarProducto(p);
@@ -64,5 +70,14 @@ public class ProductoCon {
         return list;
     }        
     
+    public static ArrayList<Producto>listarLinea3(String clave)throws ServletException, IOException{
+        ArrayList<Producto>list = prodpro.listarProducto3(clave);
+        return list;
+    }  
+    
+    public static ArrayList<Producto>listarLinea4(int sublinea)throws ServletException, IOException{
+        ArrayList<Producto>list = prodpro.listarProducto4(sublinea);
+        return list;
+    }  
     
 }

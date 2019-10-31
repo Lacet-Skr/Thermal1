@@ -25,7 +25,7 @@ public class BDLinea implements LineaDAO{
         stmt = conn.prepareStatement(SQL_INSERT);
         
         stmt.setInt(1, l.getIdlinea());
-        stmt.setInt(2, l.getClavelinea());
+        stmt.setString(2, l.getClavelinea());
         stmt.setString(3, l.getDescripcionlinea());
         stmt.executeUpdate();
         } catch (SQLException ex){
@@ -44,7 +44,7 @@ public class BDLinea implements LineaDAO{
         conn = BD.getConnection();
         stmt = conn.prepareStatement(SQL_UPDATE);    
         
-        stmt.setInt(1, l.getClavelinea());
+        stmt.setString(1, l.getClavelinea());
         stmt.setString(2, l.getDescripcionlinea());
         stmt.setInt(3, l.getIdlinea());
         System.out.println("Ejecutando: SQL_UPDATE con id: "+ l.getIdlinea());
@@ -70,7 +70,7 @@ public class BDLinea implements LineaDAO{
         if(res.next()){
         l.setIdlinea(id);
         l.setDescripcionlinea(res.getString("descripcionlinea"));
-        l.setClavelinea(res.getInt("clavelinea"));
+        l.setClavelinea(res.getString("clavelinea"));
         }
         }catch(SQLException ex){
         System.out.println("No busco linea: "+ ex.getMessage());
@@ -122,7 +122,7 @@ public class BDLinea implements LineaDAO{
         while (res.next()){
         l = new Linea();
         l.setIdlinea(res.getInt("idlinea"));
-        l.setClavelinea(res.getInt("clavelinea"));
+        l.setClavelinea(res.getString("clavelinea"));
         l.setDescripcionlinea(res.getString("descripcionlinea"));
         list.add(l);
         }

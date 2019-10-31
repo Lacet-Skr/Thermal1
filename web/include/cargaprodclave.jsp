@@ -104,8 +104,8 @@
         </style>
     </head>
     <%
-        int sublinea = Integer.parseInt(request.getParameter("sublinea"));
-        ArrayList<Producto> list = ProductoCon.listarLinea4(sublinea);
+        String clave = request.getParameter("clave");
+        ArrayList<Producto> list = ProductoCon.listarLinea3(clave);
         String pag = request.getParameter("pag");
         String link = null;
         String evento = request.getParameter("evento");

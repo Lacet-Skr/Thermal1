@@ -13,11 +13,11 @@ import java.sql.SQLException;
 public class BDProducto implements ProductoDAO{
     
         
-    protected static String SQL_SELECT = "SELECT idproducto, costoproducto, descripcionproducto, linea, sublinea FROM productos";
+    protected static String SQL_SELECT = "SELECT idproducto, claveproducto, descripcionproducto, unidadproducto, existenciaproducto, costoproducto, ventaproducto, linea, sublinea FROM productos";
     
-    protected static String SQL_INSERT = "INSERT INTO productos (idproducto, costoproducto, descripcionproducto, linea, sublinea) VALUES (?,?,?,?,?)";
+    protected static String SQL_INSERT = "INSERT INTO productos (idproducto, claveproducto, descripcionproducto, unidadproducto, costoproducto, ventaproducto, linea, sublinea) VALUES (?,?,?,?,?,?,?,?)";
     
-    protected static String SQL_UPDATE = "UPDATE productos SET costoproducto = ?, descripcionproducto = ?, linea = ?, sublinea = ? WHERE idproducto = ?";
+    protected static String SQL_UPDATE = "UPDATE productos SET claveproducto = ?, descripcionproducto = ?, unidadproducto = ?, costoproducto = ?, ventaproducto = ?, linea = ?, sublinea = ? WHERE idproducto = ?";
 
     public void insertarProducto(Producto p) throws SQLException {
         Connection conn = null;
@@ -27,10 +27,13 @@ public class BDProducto implements ProductoDAO{
         stmt = conn.prepareStatement(SQL_INSERT);
         
         stmt.setInt(1, p.getIdproducto());
-        stmt.setString(2, p.getCostoproducto());
+        stmt.setString(2, p.getClaveproducto());
         stmt.setString(3, p.getDescripcionproducto());
-        stmt.setInt(4, p.getLinea());
-        stmt.setInt(5, p.getSublinea());
+        stmt.setString(4, p.getUnidadproducto());
+        stmt.setInt(5, p.getCotoproducto());
+        stmt.setInt(6, p.getVentaproducto());
+        stmt.setInt(7, p.getLinea());
+        stmt.setInt(8, p.getSublinea());
         stmt.executeUpdate();
         } catch (SQLException ex){
         System.out.println("No se inserto el producto"+ ex.getMessage());
@@ -48,11 +51,14 @@ public class BDProducto implements ProductoDAO{
         conn = BD.getConnection();
         stmt = conn.prepareStatement(SQL_UPDATE);    
         
-        stmt.setString(1, p.getCostoproducto());
+        stmt.setString(1, p.getClaveproducto());
         stmt.setString(2, p.getDescripcionproducto());
-        stmt.setInt(3, p.getLinea());
-        stmt.setInt(4, p.getSublinea());
-        stmt.setInt(5, p.getIdproducto());
+        stmt.setString(3, p.getUnidadproducto());
+        stmt.setInt(4, p.getCotoproducto());
+        stmt.setInt(5, p.getVentaproducto());
+        stmt.setInt(6, p.getLinea());
+        stmt.setInt(7, p.getSublinea());
+        stmt.setInt(8, p.getIdproducto());
         System.out.println("Ejecutando: SQL_UPDATE con id: "+ p.getIdproducto());
         stmt.executeUpdate();
     }catch(SQLException ex){
@@ -75,8 +81,12 @@ public class BDProducto implements ProductoDAO{
             res = ps.executeQuery();
         if(res.next()){
         p.setIdproducto(id);
-        p.setCostoproducto(res.getString("costoproducto"));
+        p.setClaveproducto(res.getString("claveproducto"));
         p.setDescripcionproducto(res.getString("descripcionproducto"));
+        p.setUnidadproducto(res.getString("unidadproducto"));
+        p.setCotoproducto(res.getInt("existenciaproducto"));
+        p.setCotoproducto(res.getInt("costoproducto"));
+        p.setVentaproducto(res.getInt("ventaproducto"));
         p.setLinea(res.getInt("linea"));
         p.setSublinea(res.getInt("sublinea"));
         }
@@ -95,24 +105,28 @@ public class BDProducto implements ProductoDAO{
         String sql = SQL_SELECT + " ORDER BY descripcionproducto";
         return consultaSQL(sql);
     }
-        private ArrayList<Producto> consultaSQL (String sql){
+    private ArrayList<Producto> consultaSQL (String sql) throws SQLException{
     ArrayList<Producto> list = new ArrayList<Producto>();
     Connection con = null;
     Statement stat = null;
     ResultSet res = null;
     try{
-    Producto p;
+        Producto p;
         con = BD.getConnection();
         stat = con.createStatement();
         res = stat.executeQuery(sql);    
         while (res.next()){
-        p = new Producto();
+            p = new Producto();
         p.setIdproducto(res.getInt("idproducto"));
-        p.setCostoproducto(res.getString("costoproducto"));
+        p.setClaveproducto(res.getString("claveproducto"));
         p.setDescripcionproducto(res.getString("descripcionproducto"));
+        p.setUnidadproducto(res.getString("unidadproducto"));
+        p.setCotoproducto(res.getInt("existenciaproducto"));
+        p.setCotoproducto(res.getInt("costoproducto"));
+        p.setVentaproducto(res.getInt("ventaproducto"));
         p.setLinea(res.getInt("linea"));
         p.setSublinea(res.getInt("sublinea"));
-        list.add(p);
+            list.add(p);
         }
     }catch (SQLException ex){
     System.out.println("No listo linea"+ ex.getMessage());
@@ -127,6 +141,16 @@ public class BDProducto implements ProductoDAO{
 
     public ArrayList<Producto> listarProducto(String descripcion) throws SQLException {
         String sql = SQL_SELECT + " WHERE descripcionproducto like '"+ descripcion + "%' ORDER BY descripcionproducto";
+        return consultaSQL(sql);
+    }
+    
+    public ArrayList<Producto> listarProducto3(String clave) throws SQLException {
+        String sql = SQL_SELECT + " WHERE claveproducto like '"+ clave + "%' ORDER BY claveproducto";
+        return consultaSQL(sql);
+    }
+    
+    public ArrayList<Producto> listarProducto4(int sublinea) throws SQLException {
+        String sql = SQL_SELECT + " WHERE sublinea like '"+ sublinea + "%' ORDER BY sublinea";
         return consultaSQL(sql);
     }
     

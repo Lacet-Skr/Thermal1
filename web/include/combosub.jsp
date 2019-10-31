@@ -10,18 +10,10 @@
 <!DOCTYPE html>
 
 <%
-	String usuario = (String) session.getAttribute("usuario");
-	if(usuario==null){
-	request.getRequestDispatcher("index.jsp").forward(request, response);
-	}
-        
-        int linea = Integer.parseInt(request.getParameter("lin"));
+        int linea = Integer.parseInt(request.getParameter("linea"));
         SublineaProcesos listarsub = SublineaProcesosImpl.getInstancia();
         ArrayList<Sublinea> lissub = listarsub.listarSublineas3(linea);
         request.setAttribute("listadosublinea", lissub);
-        
-	int id = BDSublinea.ulSublinea();
-	request.setAttribute("id",id);
 %>
 <html>
     <head>
@@ -33,11 +25,11 @@
                                 
              <c:forEach var="lissub" items="${listadosublinea}">
                 <option value="${lissub.idsublinea}"
-                        <c:if test="${sublinea != null}">
-                                ${lissub.idsublinea == sublinea.idsublinea ? 'selected="selected"' : ''}
+                        <c:if test="${producto != null}">
+                                ${lissub.idsublinea == producto.sublinea ? 'selected="selected"' : ''}
                         </c:if>
                                                 
-                                >${lissub.descripcionsublinea}</option>
+                                >${lissub.clavesublinea}<p>-</p><p>${lissub.descripcionsublinea}</p></option>
             </c:forEach>
         </select>
         

@@ -113,6 +113,7 @@
             if("productos".equals(pag)){
             link = "/thermal/Controlador?accion=guardar&tab=productos&evento=buscar&par=";
             }
+        
    
     %>
     <body>
@@ -131,7 +132,7 @@
                     
                     <td align="center"><%= p.getIdproducto()%></td>
                     <td align="center"><%= p.getDescripcionproducto()%></td>
-                    <td align="center"><%= p.getCostoproducto()%></td>
+                    <td align="center"><%= p.getCotoproducto()%></td>
                     <td><a href="<%= link + p.getIdproducto()%>"> Ver</a></td> 
                 </tr>
                 <%}%>

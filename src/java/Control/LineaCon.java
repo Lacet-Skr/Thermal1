@@ -30,7 +30,7 @@ public class LineaCon {
         private void nuevoLinea(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         Linea li = new Linea();
         li.setIdlinea(Integer.parseInt(request.getParameter("idlinea")));
-        li.setClavelinea(Integer.parseInt(request.getParameter("clavelinea")));
+        li.setClavelinea(request.getParameter("clavelinea"));
         li.setDescripcionlinea(request.getParameter("descripcionlinea"));
         
         lineapro.nuevoLinea(li);
@@ -39,7 +39,7 @@ public class LineaCon {
     private void editarLinea(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         Linea l=new Linea();
         l.setIdlinea(Integer.parseInt(request.getParameter("idlinea")));
-        l.setClavelinea(Integer.parseInt(request.getParameter("clavelinea")));
+        l.setClavelinea(request.getParameter("clavelinea"));
         l.setDescripcionlinea(request.getParameter("descripcionlinea"));
         lineapro.editarLinea(l);
         request.getRequestDispatcher("panel.jsp").forward(request, response);

@@ -27,7 +27,7 @@ public class SublineaCon {
         private void nuevoSublinea(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         Sublinea s = new Sublinea();
         s.setIdsublinea(Integer.parseInt(request.getParameter("idsublinea")));
-        s.setClavesublinea(Integer.parseInt(request.getParameter("clavesublinea")));
+        s.setClavesublinea(request.getParameter("clavesublinea"));
         s.setLinea(Integer.parseInt(request.getParameter("linea")));
         s.setDescripcionsublinea(request.getParameter("descripcionsublinea"));
         subpro.nuevoSublinea(s);
@@ -37,7 +37,7 @@ public class SublineaCon {
    private void editarSublinea(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         Sublinea s = new Sublinea();
         s.setIdsublinea(Integer.parseInt(request.getParameter("idsublinea")));
-        s.setClavesublinea(Integer.parseInt(request.getParameter("clavesublinea")));
+        s.setClavesublinea(request.getParameter("clavesublinea"));
         s.setLinea(Integer.parseInt(request.getParameter("linea")));
         s.setDescripcionsublinea(request.getParameter("descripcionsublinea"));
         subpro.editarSublinea(s);

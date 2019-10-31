@@ -16,4 +16,8 @@ public interface ProductoProcesos {
     
     public ArrayList<Producto> listarProducto2();
     
+    public ArrayList<Producto> listarProducto3(String clave);
+    
+    public ArrayList<Producto> listarProducto4(int sublinea);
+
 }
