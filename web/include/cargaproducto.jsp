@@ -1,6 +1,6 @@
-<%@page import="java.util.ArrayList"%> 
-<%@page import="Clase.Proveedores"%>
-<%@page import="Control.ProveedoresCon"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Clase.Producto"%>
+<%@page import="Control.ProductoCon"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -104,31 +104,33 @@
         </style>
     </head>
     <body>
-      <% 
-      String nombre = request.getParameter("nombre");
-      ArrayList<Proveedores> list = ProveedoresCon.listarProveedor(nombre);
-      String pag = request.getParameter("pag");
-      String link = null;
-      String evento = request.getParameter("evento");
-      if("proveedores".equals(pag)){
-        link = "/thermal/Controlador?accion=guardar&tab=proveedores&evento=buscar&par=";
-      }else if("Compra".equals(pag)){
-        link = "/thermal/Controlador?accion=guardar&tab=proveedores&evento=buscar&par=";   
-      }
-      %>
-         <div class="tbl">
+        <% 
+        String descripcion = request.getParameter("nombre");
+        ArrayList<Producto> list = ProductoCon.listarLinea(descripcion);
+        String pag = request.getParameter("pag");
+        String link = null;
+        String evento = request.getParameter("evento");
+        if("productos".equals(pag)){
+         link = "/thermal/Controlador?accion=guardar&tab=productos&evento=buscar&par=";
+        }
+        %>
+        <div class="tbl">
         <table width="100%" border="0">
             <tbody>
                 <tr>
                     <td width="10%">ID</td>
-                    <td width="10%">Nombre</td>
-                    <td width="5%"></td>
+                    <td width="10%">Descripcion</td>
+                    <td width="10%">Costo</td>
+                    <td width="10%">Existencia</td>
+                    <td width="10%"></td>
                 </tr>
-                <% for (Proveedores pr : list) {%>
+                <% for (Producto p : list) {%>
                 <tr>
-                  <td align="center"><%= pr.getIdproveedor() %></td>
-                  <td align="center"><%= pr.getNombreproveedor() %></td>
-                 <td><a href="<%= link + pr.getIdproveedor()%>" > Ver</a></td>
+                  <td align="center"><%= p.getIdproducto()%></td>
+                  <td align="center"><%= p.getDescripcionproducto()%></td>
+                  <td align="center"><%= p.getCotoproducto()%></td>
+                  <td align="center"><%= p.getExistenciaproducto()%></td>
+                  <td align="center"><input type="button" onclick="add_row(<%= p.getIdproducto()%>, '<%= p.getDescripcionproducto()%>', <%= p.getCotoproducto()%>)" value="Agregar"/></td>
                 </tr>
                 <%}%>
             </tbody>

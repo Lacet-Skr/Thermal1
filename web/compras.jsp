@@ -101,7 +101,7 @@
     </head>
     <body>
         <div id="header">
-            <jsp:include page="index.jsp"/>        
+            <jsp:include page="comunes/header.jsp"/>        
         </div>
         <div id="buscar"> 
                 <form id="form4" name="form4" method="post /Thermal/Controlador">        

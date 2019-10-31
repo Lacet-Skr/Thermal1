@@ -40,7 +40,7 @@ public class ProveedoresCon {
      p.setContactoproveedor(request.getParameter("contacto"));
      p.setObservacionesproveedor(request.getParameter("observaciones"));
      proveedorpro.nuevoProveedor(p);
-     request.getRequestDispatcher("index.jsp").forward(request, response);
+     request.getRequestDispatcher("panel.jsp").forward(request, response);
     }
 
     private void editarProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -53,7 +53,7 @@ public class ProveedoresCon {
      p.setContactoproveedor(request.getParameter("contacto"));
      p.setObservacionesproveedor(request.getParameter("observaciones"));
      proveedorpro.editarProveedor(p);
-     response.sendRedirect("index.jsp");
+     response.sendRedirect("panel.jsp");
     }
 
     private void buscarProveedor(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {

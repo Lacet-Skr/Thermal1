@@ -57,7 +57,7 @@
                     var element = document.getElementById("tbl");
                     var valordepende = document.getElementById(bnombre);
                     var x = valordepende.value;
-                    var fragment_url = 'include/cargaprov.jsp?nombre='+x+'&pag=proveedores';
+                    var fragment_url = 'include/cargaproveedor.jsp?nombre='+x+'&pag=proveedores';
                     peticion.open("GET", fragment_url);
                     peticion.onreadystatechange = function ()
                     {
@@ -73,12 +73,12 @@
     </head>
     <body>
         <div id="header">
-            <jsp:include page="index.jsp"/>        
+            <jsp:include page="comunes/header.jsp"/>        
         </div>
          <c:if test="${evento != 'nuevo'}">
             <div id="buscar">
                 <p></p>
-        <form id="form2" name="form2" method="post /Thermal/Controlador">        
+        <form id="form2" name="form2" method="post /thermal/Controlador">        
                     <table width="50%" border="0" align="center">
                         <tbody>
                             <tr>
@@ -104,7 +104,7 @@
         </c:if>
          <div id="panel">
             <h2 class="ti">Datos del Proveedor</h2>
-            <form id="form1" name="form1" method="post" action="/Thermal/Controlador">
+            <form id="form1" name="form1" method="post" action="/thermal/Controlador">
                 <table width="80%" border="0" align="center">
                     <tbody>
                         <tr>
