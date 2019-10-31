@@ -8,7 +8,6 @@
 <%@page import="Clase.*"%>
 <%@page import="Datos.*"%>
 <!DOCTYPE html>
-
 <%
 	String usuario = (String) session.getAttribute("usuario");
 	if(usuario==null){
@@ -27,7 +26,7 @@
         SublineaProcesos listarsub = SublineaProcesosImpl.getInstancia();
         ArrayList<Sublinea> lissub = listarsub.listarSublinea2();
         request.setAttribute("listadosublinea", lissub);
-
+//hola
 %>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
