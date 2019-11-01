@@ -1,4 +1,4 @@
-<%@page import="Control.ComprasCon"%>
+
 <%@page import="Control.ProveedoresCon"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -55,7 +55,7 @@
                     var valordepende = document.getElementById(bdescripcion);
                     var x = valordepende.value;
                   
-                    var fragment_url = 'include/cargaproducto.jsp?nombre='+x+'&pag=Compra';
+                    var fragment_url = 'include/cargaproducto.jsp?nombre='+x+'&pag=compras';
                  
                     peticion.open("GET", fragment_url);
                     peticion.onreadystatechange = function ()
@@ -82,7 +82,7 @@
                     
                     var x = valordepende.value;
                   
-                    var fragment_url = 'include/cargaproveedor.jsp?nombre='+x+'&pag=Compra';
+                    var fragment_url = 'include/cargaproveedor.jsp?nombre='+x+'&pag=compras';
                    
                     peticion.open("GET", fragment_url);
                     
@@ -104,7 +104,8 @@
             <jsp:include page="comunes/header.jsp"/>        
         </div>
         <div id="buscar"> 
-                <form id="form4" name="form4" method="post /Thermal/Controlador">        
+            <h2 class="ti">Orden de compra</h2>
+                <form id="form4" name="form4" method="post /thermal/Controlador">        
                     <table width="50%" border="0" align="center">
                         <tbody>
                             <tr>
@@ -119,41 +120,62 @@
         </div>
         <div id="tbl2">
         </div>
-         <form id="formone" name="formone" method="post" action="/Thermal/Controlador">
-            <table border="1" align="center">
-                <tr>
-                    <td>Id Proveedor:</td>
-                    <td><input name="idbreprov" type="text" required class="cajas" id="idbreprov" placeholder="Nombre del Proveedor" value="" size="30" readonly="readonly"></td>
-                    <td>Fecha:</td>
-                    <td><input name="fechacompra" type="text" required class="cajas" id="fechacompra" placeholder="Fecha:" value="" size="30" readonly="readonly"></td>
-                </tr>
-                <tr>
-                    <td>Nombre Proveedor:</td>
-                    <td><input name="nombreprov" type="text" required class="cajas" id="nombreprov" placeholder="Id del Proveedor" value="" size="30" readonly="readonly"></td>
-                    <td>Referencia:</td>
-                    <td><input name="referencia" type="text" required class="cajas" id="referencia" placeholder="Referencia" value="" size="30"></td>
-                </tr>
-            </table>
-        </form>
         <div id="buscar">
-                <form id="form3" name="form3" method="post /Thermal/Controlador">        
+            <form id="form5" name="form5" action="/thermal/Controlador" method="post">
+                <table width="80%" border="0" align="center">
+                    <tbody>
+                        <tr>
+                            <td width="22%" align="right"><input name="tab" type="hidden" id="tab" value="compras">
+                                <input name="accion" type="hidden" id="accion" value="guardar">
+                                <input name="evento" type="hidden" id="evento" 
+                                       value="${evento}">
+                                Proveedor:</td>
+                             <td colspan="3"><input name="nombre" type="text" required class="cajas" id="nombre" value="${proveedor.nombreproveedor}" size="30">
+                                <c:choose>
+                                    <c:when test="${proveedor != null}">
+                                        <c:set target="idproveedor" var="id" value="${proveedor.idproveedor}"/>
+                                    </c:when>
+                                </c:choose>
+                                <input type="hidden" name="idproveedor" id="idproveedor" value="${id}"></td>
+                            <td width="28%">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td align="right">Direccion:</td>
+                            <td colspan="4"><input name="direccion" type="text" class="cajas" id="direccion" value="${proveedor.direccionproveedor}">          
+                        </tr>
+                        <tr>
+                            <td align="right">RFC:</td>
+                            <td colspan="2"><input name="rfc" type="text" class="cajas" id="rfc" value="${proveedor.rfcproveedor}">  
+                          
+                            <td align="right">Tel/Fax:</td>
+                            <td colspan="4"><input name="telefono" type="text" class="cajas" id="telefono" value="${proveedor.telefonoproveedor}">          
+                        </tr> 
+                        <tr>
+                            <td align="right">AT'N:</td>
+                            <td colspan="4"><input name="contacto" type="text" id="contacto" value="${proveedor.contactoproveedor}">   <style> #contacto{ left: 10px;}</style>       
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            </div>
+            <div id="buscar"> 
+                <form id="form" name="form" method="post /thermal/Controlador">        
                     <table width="50%" border="0" align="center">
                         <tbody>
                             <tr>
                                 <td align="center"><label for="bdescripcion">
                                         Producto:</label>
-                                    <input name="bdescripcion" type="search" required class="cajas" id="bdescripcion" placeholder="Descripcion del producto" onKeyPress="cargarCombo2('bdescripcion')">
+                                    <input name="bdescripcion" type="search" required class="cajas" id="bdescripcion" placeholder="Nombre del Producto" onKeyPress="cargarCombo2('bdescripcion')">
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </form>
         </div>
-        <div id="tbl">
+        <div id='tbl'>
         </div>
-       
-            <%-- Tabla donde se van agregando las partidas --%> 
-            <table align="center" id="data_table" border=1>
+       <div id="buscar">
+          <table align="center" id="data_table" border=1>
             <thead>
                 <tr>
                     <th>Id</th>
@@ -181,13 +203,13 @@
             <tbody id="data_tbody">
                 
             </tbody>
-        </table>
-  
-        
-        <button id="btn2">Guardar</button>
-        <br>
-        <br>
-        <button id="btn1">Calcular</button>
+        </table>    
+           
+       
+           <center><button id="btn1"><style> #btn1{ height: 39px; width: 100px; background: yellow; }</style>Comprobar Calculo</button>
+               <button id="btn2"><style> #btn2{ height: 35px; width: 100px; background: greenyellow;}</style>Guardar</button>
+           </center>
+       </div>
         
         <script type="text/javascript">
         $(function () {

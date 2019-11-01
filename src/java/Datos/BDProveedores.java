@@ -36,7 +36,7 @@ public class BDProveedores implements ProveedoresDAO {
             stmt.setString(2, p.getNombreproveedor());
             stmt.setString(3, p.getRfcproveedor());
             stmt.setString(4, p.getDireccionproveedor());
-            stmt.setInt(5, p.getTelefonoproveedor());
+            stmt.setString(5, p.getTelefonoproveedor());
             stmt.setString(6, p.getContactoproveedor());
             stmt.setString(7, p.getObservacionesproveedor());
             System.out.println("Executing " + SQL_INSERT);
@@ -59,7 +59,7 @@ public class BDProveedores implements ProveedoresDAO {
             stmt.setString(1, p.getNombreproveedor());
             stmt.setString(2, p.getRfcproveedor());
             stmt.setString(3, p.getDireccionproveedor());
-            stmt.setInt(4, p.getTelefonoproveedor());
+            stmt.setString(4, p.getTelefonoproveedor());
             stmt.setString(5, p.getContactoproveedor());
             stmt.setString(6, p.getObservacionesproveedor());
             stmt.setInt(7, p.getIdproveedor());
@@ -88,7 +88,7 @@ public class BDProveedores implements ProveedoresDAO {
              p.setNombreproveedor(res.getString("nombreproveedor"));
              p.setRfcproveedor(res.getString("rfcproveedor"));
              p.setDireccionproveedor(res.getString("direccionproveedor"));
-             p.setTelefonoproveedor(res.getInt("telefonoproveedor"));
+             p.setTelefonoproveedor(res.getString("telefonoproveedor"));
              p.setContactoproveedor(res.getString("contactoproveedor"));
              p.setObservacionesproveedor(res.getString("observacionesproveedor"));
             }
@@ -123,7 +123,7 @@ public class BDProveedores implements ProveedoresDAO {
              p.setNombreproveedor(res.getString("nombreproveedor"));
              p.setRfcproveedor(res.getString("rfcproveedor"));
              p.setDireccionproveedor(res.getString("direccionproveedor"));
-             p.setTelefonoproveedor(res.getInt("telefonoproveedor"));
+             p.setTelefonoproveedor(res.getString("telefonoproveedor"));
              p.setContactoproveedor(res.getString("contactoproveedor"));
              p.setObservacionesproveedor(res.getString("observacionesproveedor"));
              list.add(p);
@@ -139,7 +139,7 @@ public class BDProveedores implements ProveedoresDAO {
         return list;
     }
      public static int ulProveedor() throws SQLException {
-        String sql = "SELECT MAX(idproveedor)+1 FROM proveedor";
+        String sql = "SELECT MAX(idproveedor)+1 FROM proveedores";
         Connection con = BD.getConnection();
         Statement stat = null;
         ResultSet res = null;

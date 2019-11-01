@@ -42,11 +42,11 @@ public class Proveedores {
         this.direccionproveedor = direccionproveedor;
     }
 
-    public int getTelefonoproveedor() {
+    public String getTelefonoproveedor() {
         return telefonoproveedor;
     }
 
-    public void setTelefonoproveedor(int telefonoproveedor) {
+    public void setTelefonoproveedor(String telefonoproveedor) {
         this.telefonoproveedor = telefonoproveedor;
     }
 
@@ -78,7 +78,7 @@ public class Proveedores {
     private String nombreproveedor;
     private String rfcproveedor;
     private String direccionproveedor;
-    private int telefonoproveedor;
+    private String telefonoproveedor;
     private String contactoproveedor;
     private int saldoproveedor;
     private String observacionesproveedor;

@@ -36,7 +36,7 @@ public class ProveedoresCon {
      p.setNombreproveedor(request.getParameter("nombre"));
      p.setRfcproveedor(request.getParameter("rfc"));
      p.setDireccionproveedor(request.getParameter("direccion"));
-     p.setTelefonoproveedor(Integer.parseInt(request.getParameter("telefono")));
+     p.setTelefonoproveedor(request.getParameter("telefono"));
      p.setContactoproveedor(request.getParameter("contacto"));
      p.setObservacionesproveedor(request.getParameter("observaciones"));
      proveedorpro.nuevoProveedor(p);
@@ -49,7 +49,7 @@ public class ProveedoresCon {
      p.setNombreproveedor(request.getParameter("nombre"));
      p.setRfcproveedor(request.getParameter("rfc"));
      p.setDireccionproveedor(request.getParameter("direccion"));
-     p.setTelefonoproveedor(Integer.parseInt(request.getParameter("telefono")));
+     p.setTelefonoproveedor(request.getParameter("telefono"));
      p.setContactoproveedor(request.getParameter("contacto"));
      p.setObservacionesproveedor(request.getParameter("observaciones"));
      proveedorpro.editarProveedor(p);

@@ -28,41 +28,60 @@ public class ComprasDetalle {
         this.compra = compra;
     }
 
-    public Date getFechacomprasdetalle() {
-        return fechacomprasdetalle;
+
+    public int getProducto() {
+        return producto;
     }
 
-    public void setFechacomprasdetalle(Date fechacomprasdetalle) {
-        this.fechacomprasdetalle = fechacomprasdetalle;
+    public void setProducto(int producto) {
+        this.producto = producto;
     }
 
-    public int getProductocompras() {
-        return productocompras;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setProductocompras(int productocompras) {
-        this.productocompras = productocompras;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public double getCantidadcompras() {
-        return cantidadcompras;
+    public double getPrecio() {
+        return precio;
     }
 
-    public void setCantidadcompras(double cantidadcompras) {
-        this.cantidadcompras = cantidadcompras;
-    }
-
-    public double getCostocompras() {
-        return costocompras;
-    }
-
-    public void setCostocompras(double costocompras) {
-        this.costocompras = costocompras;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
     private int compra;
-    private Date fechacomprasdetalle;
-    private int productocompras;
-    private double cantidadcompras;
-    private double costocompras;
+    private int producto;
+    private int cantidad;
+    private double precio;
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public String getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(String proyecto) {
+        this.proyecto = proyecto;
+    }
+
+    public int getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(int descuento) {
+        this.descuento = descuento;
+    }
+    private String observaciones;
+    private String proyecto;
+    private int descuento;
     
 }

@@ -139,6 +139,9 @@ public class Controlador extends HttpServlet {
         }else if("vendedores".equals(pag)){
             VendedorCon vc = new VendedorCon();
             vc.evalua(request, response);
+        }else if("comprasdetalle".equals(pag)){
+            ComprasDetalleCon cd = new ComprasDetalleCon();
+            cd.evalua(request, response);
         }
         
     }

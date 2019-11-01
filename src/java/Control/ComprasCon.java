@@ -63,6 +63,6 @@ public class ComprasCon {
      Compras c = comprapro.buscarCompra(id);
      request.setAttribute("compra", c);
      request.setAttribute("evento", "editar");
-     request.getRequestDispatcher("Compra.jsp").forward(request, response);
+     request.getRequestDispatcher("compras.jsp").forward(request, response);
     }
 }

@@ -18,7 +18,7 @@ body{
   padding: 5px 190px 5px 0px;
 }
 #buscar{
-	width: 1150px;
+	width: 100%;
 	height: auto;
 	margin-top: 10px;
 	background-color:#E4E4E4;
@@ -526,4 +526,5 @@ background-color: #a0c0c5;
 .tbl tr:first-child td:last-child{
 	border-width:0px 0px 1px 1px;
 }
+
 /******************************************termina estilo de tablas***********************/

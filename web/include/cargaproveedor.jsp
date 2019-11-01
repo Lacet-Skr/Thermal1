@@ -112,8 +112,8 @@
       String evento = request.getParameter("evento");
       if("proveedores".equals(pag)){
         link = "/thermal/Controlador?accion=guardar&tab=proveedores&evento=buscar&par=";
-      }else if("Compra".equals(pag)){
-        link = "/thermal/Controlador?accion=guardar&tab=proveedores&evento=buscar&par=";   
+      }else if("compras".equals(pag)){
+        link = "/thermal/Controlador?accion=guardar&tab=compras&evento=buscar&par=";   
       }
       %>
          <div class="tbl">
