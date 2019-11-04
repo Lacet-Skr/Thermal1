@@ -55,12 +55,12 @@
             }
             if (!peticion)
                 alert("ERROR AL INICIALIZAR!");
-            function cargarCombo(bnombre) {
-                var no = document.getElementById(bnombre).value;
+            function cargarCombo4(bnombre2) {
+                var no = document.getElementById(bnombre2).value;
                 var nu = no.length;
-                if (nu >= 1) {
+                if (nu >= 2) {
                     var element = document.getElementById("tbl");
-                    var valordepende = document.getElementById(bnombre);
+                    var valordepende = document.getElementById(bnombre2);
                     var x = valordepende.value;
                     var fragment_url = 'include/cargaclie.jsp?nombre='+x+'&pag=cotizaciones';
                     peticion.open("GET", fragment_url);
@@ -74,41 +74,145 @@
                     peticion.send(null);
                 }
             }
-            function cargarCombo1(bnombre1) {
-                var no = document.getElementById(bnombre1).value;
+            function cargarCombo1(bnombre) {
+                var no = document.getElementById(bnombre).value;
                 var nu = no.length;
-                if (nu >= 1) {
-                    var element = document.getElementById("tbl2");
-                    var valordepende = document.getElementById(bnombre1);
+                if (nu >= 0) {
+                    //Obtenemos el contenido del div
+                    //donde se cargaran los resultados
+                    var element = document.getElementById("tbl1");
+                    //Obtenemos el valor seleccionado del combo anterior
+                    var valordepende = document.getElementById(bnombre);
                     var x = valordepende.value;
-                    var fragment_url = 'include/.jsp?nombre='+x+'&pag=cotizaciones';
-                    peticion1.open("GET", fragment_url);
-                    peticion1.onreadystatechange = function ()
+                    //construimos la url definitiva
+                    //pasando como parametro el valor seleccionado
+                    var fragment_url = 'include/cargaprod.jsp?descripcion='+x+'&pag=cotizaciones';
+                    //abrimos la url
+                    peticion.open("GET", fragment_url);
+                    peticion.onreadystatechange = function ()
                     {
-                        if (peticion1.readyState == 4)
+                        if (peticion.readyState == 4)
                         {
-                            element.innerHTML = peticion1.responseText;
+                            //escribimos la respuesta
+                            element.innerHTML = peticion.responseText;
                         }
                     }
-                    peticion1.send(null);
+                    peticion.send(null);
                 }
-            }            
+            }
+            
+            function cargarCombo2(bnombre) {
+                var no = document.getElementById(bnombre).value;
+                var nu = no.length;
+                if (nu >= 0) {
+                    //Obtenemos el contenido del div
+                    //donde se cargaran los resultados
+                    var element = document.getElementById("tbl1");
+                    //Obtenemos el valor seleccionado del combo anterior
+                    var valordepende = document.getElementById(bnombre);
+                    var x = valordepende.value;
+                    //construimos la url definitiva
+                    //pasando como parametro el valor seleccionado
+                    var fragment_url = 'include/cargaprodclave.jsp?clave='+x+'&pag=cotizaciones';
+                    //abrimos la url
+                    peticion.open("GET", fragment_url);
+                    peticion.onreadystatechange = function ()
+                    {
+                        if (peticion.readyState == 4)
+                        {
+                            //escribimos la respuesta
+                            element.innerHTML = peticion.responseText;
+                        }
+                    }
+                    peticion.send(null);
+                }
+            }
+            
+            function myFunction2(linea) {
+               var element = document.getElementById("tbl1");
+                var x = linea;
+                var url = 'include/combosub2.jsp?linea='+x+'&pag=cotizaciones';
+                peticion.open("GET", url);
+                peticion.onreadystatechange=function(){
+                    if(this.readyState == 4)
+                    {
+                        element.innerHTML=peticion.responseText;
+                    }
+                }
+                peticion.send(null);
+            
+            } 
+            
+            function myFunction3(sublinea) {
+               var element = document.getElementById("tbl3");
+                var x = sublinea;4
+                var url = 'include/cargaprod2.jsp?sublinea='+x+'&pag=cotizaciones';
+                peticion.open("GET", url);
+                peticion.onreadystatechange=function(){
+                    if(this.readyState == 4)
+                    {
+                        element.innerHTML=peticion.responseText;
+                    }
+                }
+                peticion.send(null);
+            
+            } 
+            
+            function Busqueda(condicional){
+                var x = condicional;
+                if("descripcion"==x){
+                    var element = document.getElementById("tbl2");
+                    var url = 'productosdesc.jsp?';
+                    peticion.open("GET", url);
+                    peticion.onreadystatechange = function ()
+                    {
+                        if (peticion.readyState == 4)
+                        {
+                            element.innerHTML = peticion.responseText;
+                        } 
+                    }
+                    peticion.send(null);
+                }else if("clave"==x){
+                    var element = document.getElementById("tbl2");
+                    var url = 'productosclave.jsp';
+                    peticion.open("GET", url);
+                    peticion.onreadystatechange = function ()
+                    {
+                        if (peticion.readyState == 4)
+                        {
+                            element.innerHTML = peticion.responseText;
+                        } 
+                    }
+                    peticion.send(null);
+                }else if("linea"==x){
+                    var element = document.getElementById("tbl2");
+                    var url = 'include/combolin.jsp';
+                    peticion.open("GET", url);
+                    peticion.onreadystatechange = function ()
+                    {
+                        if (peticion.readyState == 4)
+                        {
+                            element.innerHTML = peticion.responseText;
+                        } 
+                    }
+                    peticion.send(null);
+                }
+            }
             </script>
     </head>
     <body>
         <div id="header">
             <jsp:include page="comunes/header.jsp"/>
         </div>
-        <c:if test="${evento != 'nuevo'}">
             <div id="buscar">
                 <p></p>
                 <form id="form2" name="form2" method="post /thermal/Controlador">        
                     <table width="100%" border="0" align="center">
                         <tbody>
                             <tr>
-                                <td align="center"><label for="bnombre">
+                                <td align="center"><label for="bnombre2">
                                         Clientes:</label>
-                                    <input name="bnombre" type="search" required class="cajas" id="bnombre" placeholder="Nombre del Cliente" onKeyPress="cargarCombo('bnombre')">
+                                    <input name="bnombre2" type="search" required class="cajas" id="bnombre2" placeholder="Nombre del Cliente" onKeyPress="cargarCombo4('bnombre2')">
                                 </td>
                             </tr>
                         </tbody>
@@ -118,74 +222,93 @@
                 <div id="tbl">
                 
                 </div><div class="tbl">
+                    <form id="form3" name="form3" method="post /thermal/Controlador"> 
             <table width="100%" border="0" align="center">
                 <tr>
-                    <td>Id:</td>
-                    <td><input name="idcotizacion" type="text" required class="cajas" id="idcotizacion" placeholder="" value="${cotizacion.idcotizacion}" size="30" readonly="readonly"></td>
-                    <td>Fecha:</td>
-                    <td><input name="fechacotizacion" type="text" required class="cajas" id="fechacotizacion" placeholder="Fecha" value="${cotizacion.fechacotizacion}" size="30" readonly="readonly"></td>
+                    <td>Cliente:</td>
+                    <td><input name="clientecotizacion" type="text" required class="cajas" id="clientecotizacion" placeholder="" value="${cliente.nombrecliente}" size="30" readonly="readonly"></td>
+                    <td>Tel:</td>
+                    <td><input name="telclicotizacion" type="text" required class="cajas" id="telclicotizacion" placeholder="Tel" value="${cliente.telcliente}" size="30" readonly="readonly"></td>
                 </tr>
                 <tr>
-                    <td>Nombre:</td>
-                    <td><input name="clientecotizacion" type="text" required class="cajas" id="clientecotizacion" placeholder="Nombre" value="${cotizacion.clientecotizacion}" size="30" readonly="readonly"></td>
-                    <td>Total:</td>
-                    <td><input name="totalcotizacion" type="text" required class="cajas" id="totalcotizacion" placeholder="Total" value="${cotizacion.totalcotizacion}" size="30" readonly="readonly"></td>
+                    <td>Email:</td>
+                    <td><input name="emailcliente" type="text" required class="cajas" id="clientecotizacion" placeholder="Email" value="${cliente.emailcliente}" size="30" readonly="readonly"></td>
+                    <td>Atención:</td>
+                    <td><input name="contactocliente" type="text" required class="cajas" id="totalcotizacion" placeholder="Contacto" value="${cliente.contactocliente}" size="30" readonly="readonly"></td>
                 </tr>
-            </table></div>
+                <tr>
+                    <td>Fecha:</td>
+                    <td><input name="fechacotizacion" type="text" required class="cajas" id="fechacotizacion" placeholder="Fecha" value="" size="30" readonly="readonly"></td>
+                    <td>Tiempo-Entrega:</td>
+                    <td><input name="entregacotizacion" type="text" required class="cajas" id="entregacotizacion" placeholder="Entrega" value="" size="30"></td>
+                </tr>
+            </table>
                 <p></p>
-                <form id="form3" name="form3" method="post /thermal/Controlador">        
                     <table width="100%" border="0" align="center">
                         <tbody>
-                            <tr>
-                                <td align="center"><label for="bnombre">
-                                        Producto:</label>
-                                    <input name="bnombre" type="search" required class="cajas" id="bnombre" placeholder="Nombre del Producto" onKeyPress="cargarCombo1('bnombre1')">
-                                </td>
-                            </tr>
+                            <select name="busqueda" id="busqueda" onchange="Busqueda(this.value)">
+                            <option value="" disable selected>Busqueda..</option>
+                            <option value="descripcion">Descripcion</option>
+                            <option value="clave">Clave</option>
+                            <option value="linea">Linea & Sublinea</option>
+                            </select>
                         </tbody>
-                    </table>
-                    <p></p>
-                <div id="tbl2">
+                        <div id="tbl2">
+                            
+                        </div>
+                        <div id="tbl1">
                 
                 </div>
+                        <div id="tbl3">
+                
+                </div>
+                    </table>
                     <p></p>
+                
                     <div class="tbl">
             <table width="100%" border="0" align="center" id="data_table">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Descripción</th>
+                    <th>Unidad</th>
                     <th>Costo</th>
                     <th>Cantidad</th>
                     <th>Total</th>
-                    <th>Acción</th>
+                    <th>Accion</th>
                 </tr>
             </thead>
             <tfoot id="tfoot_table">
                 <tr>
-                    <td colspan=4 >SubTotal</td>
+                    <td colspan=5 >Costo</td>
+                    <td><input name="Costo" type='text' id="Costo" value="0" readonly="readonly" required class="cajas"></td>
+                </tr>
+                <tr>
+                    <td colspan=5 >Utilidad %</td>
+                    <td><input name="Utilidadp" type='text' id="Utilidadp" value="0" required class="cajas"></td>
+                </tr>
+                <tr>
+                    <td colspan=5 >Utilidad $</td>
+                    <td><input name="Utilidad" type='text' id="Utilidad" value="0" readonly="readonly" required class="cajas"></td>
+                </tr>
+                <tr>
+                    <td colspan=5 >SubTotal</td>
                     <td><input name="Subtotal" type='text' id="Subtotal" value="0" readonly="readonly" required class="cajas"></td>
                 </tr>
                 <tr>
-                    <td colspan=4 >IVA</td>
+                    <td colspan=5 >IVA</td>
                     <td><input name="Iva" type='text' id="Iva" value="0" readonly="readonly" required class="cajas"></td>
                 </tr>
                 <tr>
-                    <td colspan=4 >Total</td>
+                    <td colspan=5 >Total</td>
                     <td><input name="Total" type='text' id="Total" value="0" readonly="readonly" required class="cajas"></td>
                 </tr>
             </tfoot>
             <tbody id="data_tbody">
-                <tr>
-                    <td><input name="" type='text' id="" value="10" required class="cajas"></td>               
-                    <td><input name="" type='text' id="" value="Cualquier cosa xD" required class="cajas"></td>
-                    <td><input name="" type='text' id="" value="90" required class="cajas"</td>
-                    <td><input name="" type='text' id="" value="80" required class="cajas"></td>
-                    <td><input name="" type='text' id="" value="0" required class="cajas"></td>
-                    <td><input type='button' value='Delete' id="delete_row" class='Boton' onclick='delete_row("1")'></td></tr>
             </tbody>           
             </table></div>                     
-                </form>              
+                </form>  
+                </div>
                 <p></p>
         <button id="myBtn" align="center">Calcular</button>
                 <table width="50%" border="0" align="center">
@@ -206,7 +329,6 @@
         <p></p>
         <p></p>
             </div>
-        </c:if>       
         <script type="text/javascript">
             $(function() {
                 $("#fechacotizacion").datepicker({
@@ -218,62 +340,55 @@
              $("#myBtn").click(function(){
              var costo;
              var cantidad;
-             var importe=0;
              var subto=0;
              var iva=0;
              var total=0;
+             var importe=0;
+             var utilidadp=0;
+             var utilidadm=0;
+             var costo1=0;
              $('#data_table tr').each(function () {
-            costo=$(this).find("td").eq(2).find("input").val();
-            cantidad=$(this).find("td").eq(3).find("input").val();
+            costo=$(this).find("td").eq(3).find("input").val();
+            cantidad=$(this).find("td").eq(4).find("input").val();
             importe=(parseFloat(costo)*parseFloat(cantidad));
-            $(this).find("td").eq(4).find("input").val(importe.toFixed(2));
-            if (isNaN(importe, cantidad, costo, total)) {
-            importe=0;
+            $(this).find("td").eq(5).find("input").val(importe.toFixed(2));
+            if (isNaN(importe, cantidad, costo, total, utilidadp, utilidadm, costo1)) {
             cantidad=0;
             costo=0;
             total=0;
+            importe=0;
+            utilidadp=0;
+            utilidadm=0;
+            costo1=0;
             }            
-            subto=subto + importe;           
+            costo1=costo1 + importe;           
             });
-            iva=subto*.16;
+            utilidadp=$('#Utilidadp').val();
+            var porcentaje = utilidadp * costo1;
+            utilidadm = porcentaje/100;
+            subto = costo1 + utilidadm;
+            iva = subto * .16;
             total=subto+iva;
+            $('#Costo').val(costo1.toFixed(2));
+            $('#Utilidad').val(utilidadm.toFixed(2));
             $('#Subtotal').val(subto.toFixed(2));
             $('#Iva').val(iva.toFixed(2));
             $('#Total').val(total.toFixed(2));
             });
             
-            function agrega1(id, nombrec){
-                $("#idcotizacion").attr("value",id);
-                $("#clientecotizacion").attr("value",nombrec);
-            };
-            
-            function delete_row(no){
-                $('#row'+no).remove();
-            var costo;
-            var cantidad;
-            var importe=0;
-            var subto=0;
-            var iva=0;
-            var total=0;
-            $('#data_table tr').each(function () {                      
-            costo=$(this).find("td").eq(2).find("input").val();
-            cantidad=$(this).find("td").eq(3).find("input").val();
-            importe=(parseFloat(costo)*parseFloat(cantidad));
-            $(this).find("td").eq(4).find("input").val(importe.toFixed(2));
-            if (isNaN(importe, cantidad, costo, total)) {
-            importe=0;
-            cantidad=0;
-            costo=0;
-            total=0;
+             function delete_row(no){
+                document.getElementById("row"+no+"").outerHTML="";//esto es para eliminar los tr
+               //pasarsela a un input el cual utilizaremos en el baken se pone aqui en caso de que eliminemos todos los registros
             }
-            subto=subto + importe;           
-            });
-            iva=subto*.16;
-            total=subto+iva;
-            $('#Subtotal').val(subto.toFixed(2));
-            $('#Iva').val(iva.toFixed(2));
-            $('#Total').val(total.toFixed(2));
-             }
+             
+             function add_row(id, producto, unidad, costo)
+            {
+                var table=document.getElementById("data_tbody");
+                var table_leng=(table.rows.length)-1;
+                var row = table.insertRow(table_leng).outerHTML="<tr id='row"+table_leng+"'><td id='id_producto"+table_leng+"'>"+ id+"<input type='hidden' value='"+id+"'></td><td id='permiso"+table_leng+"'>"+ producto+"<input type='hidden' value='"+producto+"'></td><td id='unidad"+table_leng+"'>"+ unidad+"<input type='hidden' value='"+unidad+"'></td><td id='costo"+table_leng+"'>"+ costo+"<input type='hidden' value='"+costo+"'></td><td id='cantidad"+table_leng+"'><input type='text' class='cantidad"+table_leng+"'></td><td id='total"+table_leng+"'><input type='text' readonly='readoly' class='total"+table_leng+"'></td><td> <input type='button' value='Delete' clss='delete' onclick='delete_row("+ table_leng+")'></td></tr>";//aqui es para poder agregar nuevos permisos la funcion s e llama desde el carga de menu                                 
+                
+    }
+             
                      <%--%>function add_row(id, descripcion, costo)
             {
                 var table=document.getElementById("data_tbody");
