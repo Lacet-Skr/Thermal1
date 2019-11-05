@@ -206,6 +206,7 @@
         </div>
             <div id="buscar">
                 <p></p>
+                <h2 class="ti">Cotizaciones</h2>
                 <form id="form2" name="form2" method="post /thermal/Controlador">        
                     <table width="100%" border="0" align="center">
                         <tbody>
@@ -220,53 +221,101 @@
                 </form>
                 <p></p>
                 <div id="tbl">
-                
-                </div><div class="tbl">
-                    <form id="form3" name="form3" method="post /thermal/Controlador"> 
-            <table width="100%" border="0" align="center">
+                </div>
+                </div>
+              <div id="buscar">
+               <form id="form3" name="form3" method="post /thermal/Controlador"> 
+                    <table align='center'>
                 <tr>
                     <td>Cliente:</td>
-                    <td><input name="clientecotizacion" type="text" required class="cajas" id="clientecotizacion" placeholder="" value="${cliente.nombrecliente}" size="30" readonly="readonly"></td>
+                    <td><input name="clientecotizacion" type="text" required class="cajas0" id="clientecotizacion" placeholder="" value="${cliente.nombrecliente}" size="30" readonly="readonly"></td>
                     <td>Tel:</td>
-                    <td><input name="telclicotizacion" type="text" required class="cajas" id="telclicotizacion" placeholder="Tel" value="${cliente.telcliente}" size="30" readonly="readonly"></td>
+                    <td><input name="telclicotizacion" type="text" required class="cajas1" id="telclicotizacion" placeholder="Tel" value="${cliente.telcliente}" size="30" readonly="readonly"></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input name="emailcliente" type="text" required class="cajas" id="clientecotizacion" placeholder="Email" value="${cliente.emailcliente}" size="30" readonly="readonly"></td>
+                    <td><input name="emailcliente" type="text" required class="cajas2" id="clientecotizacion" placeholder="Email" value="${cliente.emailcliente}" size="30" readonly="readonly"></td>
                     <td>Atención:</td>
-                    <td><input name="contactocliente" type="text" required class="cajas" id="totalcotizacion" placeholder="Contacto" value="${cliente.contactocliente}" size="30" readonly="readonly"></td>
+                    <td><input name="contactocliente" type="text" required class="cajas3" id="totalcotizacion" placeholder="Contacto" value="${cliente.contactocliente}" size="30" readonly="readonly"></td>
                 </tr>
                 <tr>
                     <td>Fecha:</td>
-                    <td><input name="fechacotizacion" type="text" required class="cajas" id="fechacotizacion" placeholder="Fecha" value="" size="30" readonly="readonly"></td>
+                    <td><input name="fechacotizacion" type="text" required class="cajas5" id="fechacotizacion" placeholder="Fecha" value="" size="30" readonly="readonly"></td>
                     <td>Tiempo-Entrega:</td>
-                    <td><input name="entregacotizacion" type="text" required class="cajas" id="entregacotizacion" placeholder="Entrega" value="" size="30"></td>
+                    <td><input name="entregacotizacion" type="text" required class="cajas6" id="entregacotizacion" placeholder="Entrega" value="" size="30"></td>
                 </tr>
-            </table>
+                <tr><td>Buscar Por:</td></tr>
+                
+                  </table>
                 <p></p>
-                    <table width="100%" border="0" align="center">
+                    </div>
+                
+                    <table align="center">
                         <tbody>
-                            <select name="busqueda" id="busqueda" onchange="Busqueda(this.value)">
+                            <select name="busqueda" id="busqueda" class="combito" onchange="Busqueda(this.value)">
                             <option value="" disable selected>Busqueda..</option>
                             <option value="descripcion">Descripcion</option>
                             <option value="clave">Clave</option>
                             <option value="linea">Linea & Sublinea</option>
                             </select>
                         </tbody>
-                        <div id="tbl2">
-                            
+                         <div id="buscar">
+                         <div id="tbl2" align='center'>
                         </div>
-                        <div id="tbl1">
+                        <div id="tbl1" align='center'>
+                        </div>
+                        <div id="tbl3" >
+                         </div>
+                         </div>
+                        </table>
+                        <p></p>
+                        <div class="tbl"></div>
+                        <style>
+                            .combito{
+                               position: relative;
+                               left: 400px;
+                               bottom: 35px;
+                            }
+                        </style>
                 
-                </div>
-                        <div id="tbl3">
-                
-                </div>
-                    </table>
-                    <p></p>
-                
-                    <div class="tbl">
-            <table width="100%" border="0" align="center" id="data_table">
+            <div id="buscar">
+            <form id="form" name="form" method="post /thermal/Controlador">
+                <style>
+                  .tablas{
+               border: 1px solid #black;
+               width: 100%;
+               margin: 0;
+               padding: 0;
+               border-collapse: collapse;
+               border-spacing: 0;
+                }
+                .tablas th, td{
+                text-align: center;
+                padding: 1px;
+                }
+              .tablas tbody tr:nth-child(even){
+              background-color: #56b6ff;
+             }
+             #btn1{
+                 width: 100px;
+                 height: 39px;
+                 background-color: yellow;
+             }
+             #btn2{
+                 width: 100px;
+                 height: 39px;
+                 background-color: yellowgreen;
+                 position: relative;
+                 left:40px;
+             }
+            </style>
+            <div style="border : solid 2px #333;
+            background : #E4E4E4;
+            padding : 4px;
+            width : 99%;
+            height : 100px;
+            overflow : auto; ">
+            <table class="tablas" border="1" align="center" id="data_table">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -278,39 +327,35 @@
                     <th>Accion</th>
                 </tr>
             </thead>
-            <tfoot id="tfoot_table">
+              <tbody id="data_tbody">
+            </tbody> 
+             </table>
+            </div>
+                <table id="obser">
                 <tr>
                     <td colspan=5 >Costo</td>
-                    <td><input name="Costo" type='text' id="Costo" value="0" readonly="readonly" required class="cajas"></td>
-                </tr>
-                <tr>
+                    <td><input name="Costo" type='text' id="Costo" value="0" readonly="readonly" required class=""></td>
+               
                     <td colspan=5 >Utilidad %</td>
-                    <td><input name="Utilidadp" type='text' id="Utilidadp" value="0" required class="cajas"></td>
-                </tr>
-                <tr>
+                    <td><input name="Utilidadp" type='text' id="Utilidadp" value="0" required class=""></td>
+                    
                     <td colspan=5 >Utilidad $</td>
-                    <td><input name="Utilidad" type='text' id="Utilidad" value="0" readonly="readonly" required class="cajas"></td>
-                </tr>
-                <tr>
+                    <td><input name="Utilidad" type='text' id="Utilidad" value="0" readonly="readonly" required class=""></td>
+               
                     <td colspan=5 >SubTotal</td>
-                    <td><input name="Subtotal" type='text' id="Subtotal" value="0" readonly="readonly" required class="cajas"></td>
-                </tr>
-                <tr>
+                    <td><input name="Subtotal" type='text' id="Subtotal" value="0" readonly="readonly" required class=""></td>
+                    
                     <td colspan=5 >IVA</td>
-                    <td><input name="Iva" type='text' id="Iva" value="0" readonly="readonly" required class="cajas"></td>
-                </tr>
+                    <td><input name="Iva" type='text' id="Iva" value="0" readonly="readonly" required class=""></td>
                 <tr>
                     <td colspan=5 >Total</td>
-                    <td><input name="Total" type='text' id="Total" value="0" readonly="readonly" required class="cajas"></td>
+                    <td><input name="Total" type='text' id="Total" value="0" readonly="readonly" required class=""></td>
                 </tr>
-            </tfoot>
-            <tbody id="data_tbody">
-            </tbody>           
-            </table></div>                     
+            </table>               
                 </form>  
-                </div>
+                
                 <p></p>
-        <button id="myBtn" align="center">Calcular</button>
+        <button id="btn1" align="center">Calcular</button>
                 <table width="50%" border="0" align="center">
                     <p></p>
                         <tr>
@@ -385,7 +430,7 @@
             {
                 var table=document.getElementById("data_tbody");
                 var table_leng=(table.rows.length)-1;
-                var row = table.insertRow(table_leng).outerHTML="<tr id='row"+table_leng+"'><td id='id_producto"+table_leng+"'>"+ id+"<input type='hidden' value='"+id+"'></td><td id='permiso"+table_leng+"'>"+ producto+"<input type='hidden' value='"+producto+"'></td><td id='unidad"+table_leng+"'>"+ unidad+"<input type='hidden' value='"+unidad+"'></td><td id='costo"+table_leng+"'>"+ costo+"<input type='hidden' value='"+costo+"'></td><td id='cantidad"+table_leng+"'><input type='text' class='cantidad"+table_leng+"'></td><td id='total"+table_leng+"'><input type='text' readonly='readoly' class='total"+table_leng+"'></td><td> <input type='button' value='Delete' clss='delete' onclick='delete_row("+ table_leng+")'></td></tr>";//aqui es para poder agregar nuevos permisos la funcion s e llama desde el carga de menu                                 
+                var row = table.insertRow(table_leng).outerHTML="<tr id='row"+table_leng+"'><td id='id_producto"+table_leng+"'>"+ id+"<input type='hidden' value='"+id+"'></td><td id='permiso"+table_leng+"'>"+ producto+"<input type='hidden' value='"+producto+"'></td><td id='unidad"+table_leng+"'>"+ unidad+"<input type='hidden' value='"+unidad+"'></td><td id='costo"+table_leng+"'>"+ costo+"<input type='hidden' value='"+costo+"'></td><td id='cantidad"+table_leng+"'><input type='text' id='canti' class='cantidad"+table_leng+"'></td><td id='total"+table_leng+"'><input type='text' readonly='readoly' id='tota' class='total"+table_leng+"'></td><td> <input type='button' value='Eliminar' class='delete' onclick='delete_row("+ table_leng+")'></td></tr>";//aqui es para poder agregar nuevos permisos la funcion s e llama desde el carga de menu                                 
                 
     }
              
@@ -397,5 +442,25 @@
                 var row = table.insertRow(table_leng).outerHTML="<tr id='row"+table_leng+"'><td><input type='text'  name=" + id + " value="+ id +" readonly='readonly'></td><td>" + descripcion + "</td><td id='cos"+table_leng+"'><input type='text' id='name_text"+table_leng+"' value=" + costo + " readonly='readonly'></td><td><input type='text' class='can"+table_leng+"'></td><td><input type='text' id='tot"+table_leng+"'></td><td><input type='button' value='Delete' id="Delete" class='Boton' onclick='delete_row("+ table_leng+")'></td></tr>";                
             } --%>            
         </script>
+        <style>
+            #canti{
+                border: none;
+                background: none;
+                text-align: center; 
+            }
+            #tota{
+                border: none;
+                    background: none;
+                    text-align: center; 
+            }
+            .delete{
+                background-color: gold;
+            }
+              #btn1{
+                 width: 100px;
+                 height: 39px;
+                 background-color: yellow;
+             }
+        </style>
     </body>
 </html>
