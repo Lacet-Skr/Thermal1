@@ -149,7 +149,6 @@
             function myFunction1(linea) {
                var element = document.getElementById("combon");
                 var x = linea;
-                alert(x);
                 var url = 'include/combosub.jsp?linea='+x+'&pag=productos';
                 peticion.open("GET", url);
                 peticion.onreadystatechange=function(){
@@ -165,7 +164,6 @@
             function myFunction2(linea) {
                var element = document.getElementById("tbl1");
                 var x = linea;
-                alert(x);
                 var url = 'include/combosub2.jsp?linea='+x+'&pag=productos';
                 peticion.open("GET", url);
                 peticion.onreadystatechange=function(){
@@ -180,7 +178,6 @@
             function myFunction3(sublinea) {
                var element = document.getElementById("tbl3");
                 var x = sublinea;
-                alert(x);
                 var url = 'include/cargaprod2.jsp?sublinea='+x+'&pag=productos';
                 peticion.open("GET", url);
                 peticion.onreadystatechange=function(){

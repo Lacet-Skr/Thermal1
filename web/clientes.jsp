@@ -85,7 +85,7 @@
     </head>
     <body>
         <div id="header">
-            <jsp:include page="index.jsp"/>
+            <jsp:include page="comunes/header.jsp"/>
         </div>
         <c:if test="${evento != 'nuevo'}">
             <div id="buscar">

@@ -133,7 +133,13 @@
                     <td align="center"><%= p.getIdproducto()%></td>
                     <td align="center"><%= p.getDescripcionproducto()%></td>
                     <td align="center"><%= p.getCotoproducto()%></td>
+                    <%if("productos".equals(pag)){%>
                     <td><a href="<%= link + p.getIdproducto()%>"> Ver</a></td> 
+                    <%}else if("cotizaciones".equals(pag)){%>
+                    <td align="center"><input type="button" value="Agregar" class="Agregar" onclick="add_row(<%= p.getIdproducto()%>, '<%= p.getDescripcionproducto()%>', '<%= p.getUnidadproducto()%>', <%= p.getCotoproducto()%>)"></td>
+                     <%}else if("compras".equals(pag)){%>
+                    <td align="center"><input type="button" value="Agregar" class="Agregar" onclick="add_row(<%= p.getIdproducto()%>, '<%= p.getDescripcionproducto()%>', <%= p.getCotoproducto()%>)"></td>
+                      <%}%>
                 </tr>
                 <%}%>
             </tbody>
