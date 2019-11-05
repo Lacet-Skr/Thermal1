@@ -546,7 +546,6 @@
             <script>
                 function add_row(id, producto, unidad, costo)
             {
-                alert(12);
                 var table=document.getElementById("data_tbody");
                 var table_leng=(table.rows.length)-1; 
                 var row = table.insertRow(table_leng).outerHTML="<tr id='row"+table_leng+"'><td><input type='text' class='id' name=" + id + " value="+ id +" readonly='readonly'></td><td>" + producto + "</td><td id='cos"+table_leng+"'><input type='text' id='name_text"+table_leng+"' value=" + costo + " readonly='readonly' class='costo'></td><td><input type='text' id='cantidad' class='can"+table_leng+"'></td><td><input type='text' id='descuento' class='des"+table_leng+"'></td><td><input type='text' class='total' id='tot"+table_leng+"'></td><td><input type='button' value='Eliminar' class='delete' onclick='delete_row("+ table_leng+")'></td></tr>";                                           
