@@ -477,7 +477,7 @@
             $('#Iva').val(iva.toFixed(2));
             $('#Total').val(total.toFixed(2));
             <%-- termina función de recalcular --%>
-                
+            }  
              
              <%-- Función para calcular partidas --%>
              $("#btn1").click(function(){
@@ -514,7 +514,7 @@
             $('#Iva').val(iva.toFixed(2));
             $('#Total').val(total.toFixed(2));
             });
-        }
+        
             <%-- ********************* --%>
          <%-- Función para agregar partidas --%>
             
