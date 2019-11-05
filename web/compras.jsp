@@ -445,9 +445,9 @@
              <%-- Función para eliminar partidas --%>
              function delete_row(no){
                 $('#row'+no).remove();
-            }
+            
                 <%-- Metemos la funcion para recalcular despues de eliminar --%>
-    $('#data_table tr').each(function () {         
+             
                 var costo;
              var cantidad;
              var descuento;
@@ -456,7 +456,7 @@
              var iva=0;
              var total=0;
              var resultado;
-             
+             $('#data_table tr').each(function () {
             //id = $(this).find("td").eq(0).html();//trae el id
             //descripcion = $(this).find("td").eq(1).html();//trae la descripcion
             //var costo = $(this).find("td").eq(2).html();//trae el costo
@@ -514,6 +514,7 @@
             $('#Iva').val(iva.toFixed(2));
             $('#Total').val(total.toFixed(2));
             });
+        }
             <%-- ********************* --%>
          <%-- Función para agregar partidas --%>
             
