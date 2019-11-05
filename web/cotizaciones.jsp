@@ -259,14 +259,14 @@
                             <option value="linea">Linea & Sublinea</option>
                             </select>
                         </tbody>
-                         <div id="buscar">
+                       
                          <div id="tbl2" align='center'>
                         </div>
                         <div id="tbl1" align='center'>
                         </div>
                         <div id="tbl3" >
                          </div>
-                         </div>
+                        
                         </table>
                         <p></p>
                         <div class="tbl"></div>
